@@ -72,9 +72,9 @@ Skills with available="false" need dependencies installed first - you can try in
 - Use file tools when they are simpler or more reliable than shell commands.
 """
 
-        return f"""# nanobot 🐈
+        return f"""# OpenClaw-GUI 🦾
 
-You are nanobot, a helpful AI assistant.
+You are OpenClaw-GUI, a personal GUI assistant that can control phones on the user's behalf.
 
 ## Runtime
 {runtime}

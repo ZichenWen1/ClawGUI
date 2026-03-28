@@ -21,9 +21,9 @@ class GUITool(Tool):
     Integrates PhoneAgent (Omni-GUI) to let the agent control a phone
     via ADB/HDC by understanding screen content with a VLM.
 
-    Model selection is automatic:
-    - If gui_api_key is configured, the dedicated external GUI model is used.
-    - Otherwise, the current nanobot model is used (must be a recognized VLM).
+    Supports two modes:
+    - Internal mode (default): use the current nanobot model for GUI reasoning.
+    - External mode: use a separately configured GUI VLM (e.g. AutoGLM-Phone).
     """
 
     def __init__(
@@ -32,22 +32,25 @@ class GUITool(Tool):
         device_type: str = "adb",
         device_id: str | None = None,
         max_steps: int = 50,
-        lang: str = "cn",
-        # Current nanobot model config (fallback when no external GUI model configured)
+        # Config-level default: always use external model regardless of LLM's per-call choice.
+        use_external_model: bool = False,
+        # Current nanobot model config (used when use_external_model=false)
         current_base_url: str | None = None,
         current_api_key: str | None = None,
         current_model_name: str | None = None,
-        # External GUI model config (auto-enabled when gui_api_key is non-empty)
-        gui_base_url: str = "https://open.bigmodel.cn/api/paas/v4/",
+        # External GUI model config (used when use_external_model=true)
+        gui_base_url: str = "",
         gui_api_key: str = "",
         gui_model_name: str = "autoglm-phone",
-        gui_model_type: str = "autoglm",
+        # Prompt template controls
+        prompt_template_lang: str = "cn",
+        prompt_template_style: str = "autoglm",
     ):
         self.phone_agent_dir = phone_agent_dir
         self.device_type = device_type
         self.device_id = device_id
         self.max_steps = max_steps
-        self.lang = lang
+        self.use_external_model = use_external_model
 
         self.current_base_url = current_base_url
         self.current_api_key = current_api_key
@@ -56,7 +59,8 @@ class GUITool(Tool):
         self.gui_base_url = gui_base_url
         self.gui_api_key = gui_api_key
         self.gui_model_name = gui_model_name
-        self.gui_model_type = gui_model_type
+        self.prompt_template_lang = prompt_template_lang
+        self.prompt_template_style = prompt_template_style
 
     @property
     def name(self) -> str:
@@ -69,7 +73,7 @@ class GUITool(Tool):
             "via ADB. Describe the task in natural language and the tool will use a "
             "vision-language model to understand the phone screen, then perform actions "
             "(tap, swipe, type text, launch app, back, home, etc.) in a loop until the "
-            "task is completed. The vision model is selected automatically.\n\n"
+            "task is completed.\n\n"
             "Examples:\n"
             '  - "Open WeChat and send a message to Zhang San saying I will be late"\n'
             '  - "Search for Bluetooth headphones on Taobao and add to cart"\n'
@@ -103,11 +107,6 @@ class GUITool(Tool):
     ) -> str | list[dict[str, Any]]:
         """Execute a GUI task on the connected device.
 
-        Model selection is automatic:
-        - If gui_api_key is configured, the dedicated external GUI model is used.
-        - Otherwise, the current nanobot model is used after verifying it is a
-          recognized vision-language model.
-
         Returns either a plain string (on error) or a list of content blocks
         containing the result text and a final screenshot image so the LLM can
         see the screen state and optionally forward it via the message tool.
@@ -118,34 +117,26 @@ class GUITool(Tool):
         if device_check_error:
             return device_check_error
 
-        # --- 2. Resolve model config (automatic selection) ---
-        if self.gui_api_key:
-            # External dedicated GUI model configured — use it unconditionally.
+        # --- 2. Resolve model config ---
+        if self.use_external_model:
+            if not self.gui_api_key:
+                return (
+                    "Error: External GUI model requested but gui_api_key is not set. "
+                    "Please configure tools.gui.guiApiKey in ~/.nanobot/config.json."
+                )
             base_url = self.gui_base_url
             api_key = self.gui_api_key
             model_name = self.gui_model_name
-            logger.info("GUI model: external ({})", model_name)
-            print(f"[GUI] 使用外部 GUI 模型: {model_name} ({base_url})")
         else:
-            # Fall back to the current nanobot model.
+            # Use current nanobot model
             if not self.current_base_url or not self.current_model_name:
                 return (
-                    "Error: GUI task failed. No external GUI model is configured "
-                    "(tools.gui.guiApiKey is empty) and the current nanobot model "
-                    "config is unavailable. Please configure a GUI model in "
-                    "~/.nanobot/config.json (tools.gui.guiApiKey + guiModelName)."
+                    "Error: Current model config not available for GUI mode. "
+                    "Please ensure the nanobot model provider is properly configured."
                 )
-            # Warn if the nanobot model is not a recognised VLM; proceed anyway
-            # using the AutoGLM prompt template (phone_agent default).
-            vlm_warning = self._warn_if_unknown_model(self.current_model_name)
-            if vlm_warning:
-                logger.warning(vlm_warning)
-                print(f"[GUI] 警告: {vlm_warning}")
             base_url = self.current_base_url
             api_key = self.current_api_key or "EMPTY"
             model_name = self.current_model_name
-            logger.info("GUI model: nanobot current model ({})", model_name)
-            print(f"[GUI] 使用 nanobot 当前模型: {model_name} ({base_url})")
 
         steps = max_steps or self.max_steps
         logger.info(
@@ -168,13 +159,6 @@ class GUITool(Tool):
             logger.error("GUI task failed: {}", e)
             return f"Error executing GUI task: {e}"
 
-        # Prepend any VLM compatibility warning so the LLM is aware.
-        if self.gui_api_key:
-            vlm_warning = None
-        else:
-            vlm_warning = self._warn_if_unknown_model(self.current_model_name or "")
-        result_with_warning = f"[Warning] {vlm_warning}\n\n{result}" if vlm_warning else result
-
         # --- 4. Capture final screenshot and return image + text ---
         screenshot_path = await self._capture_final_screenshot()
         if screenshot_path:
@@ -183,13 +167,13 @@ class GUITool(Tool):
                 raw = Path(screenshot_path).read_bytes()
                 blocks = build_image_content_blocks(
                     raw, "image/png", screenshot_path,
-                    f"[GUI Result] {result_with_warning}\n\n📱 Final screenshot saved at: {screenshot_path}",
+                    f"[GUI Result] {result}\n\n📱 Final screenshot saved at: {screenshot_path}",
                 )
                 return blocks
             except Exception as e:
                 logger.warning("Failed to build image blocks for final screenshot: {}", e)
-                return f"{result_with_warning}\n\n[Screenshot saved: {screenshot_path}]"
-        return result_with_warning
+                return f"{result}\n\n[Screenshot saved: {screenshot_path}]"
+        return result
 
     async def _capture_final_screenshot(self) -> str | None:
         """Capture the current phone screen and save to a temporary PNG file.
@@ -254,15 +238,16 @@ class GUITool(Tool):
             base_url=base_url,
             api_key=api_key,
             model_name=model_name,
-            lang=self.lang,
+            lang=self.prompt_template_lang,
         )
 
         agent_config = AgentConfig(
             max_steps=max_steps,
             device_id=self.device_id,
-            lang=self.lang,
+            lang=self.prompt_template_lang,
             verbose=True,
             enable_memory=True,
+            model_type=self.prompt_template_style,
         )
 
         # Auto-confirm for nanobot context (no interactive stdin)
@@ -281,38 +266,6 @@ class GUITool(Tool):
         )
 
         return agent.run(task)
-
-    @staticmethod
-    def _warn_if_unknown_model(model_name: str) -> str | None:
-        """Return a warning string if model_name has no official phone_agent prompt
-        template, else None.
-
-        Reuses phone_agent's detect_model_type logic: if the function returns
-        AUTOGLM but the model name does not contain 'autoglm', the model was not
-        matched by any known pattern. Execution continues using the AutoGLM prompt
-        template as a fallback, but results may be degraded.
-        """
-        try:
-            agent_path = str(Path(__file__).resolve().parents[5])
-            if agent_path not in sys.path:
-                sys.path.insert(0, agent_path)
-            from phone_agent.model.adapters import detect_model_type, ModelType
-        except ImportError:
-            return None
-
-        model_type = detect_model_type(model_name)
-        is_known = not (
-            model_type == ModelType.AUTOGLM
-            and "autoglm" not in model_name.lower()
-        )
-        if not is_known:
-            return (
-                f"Model '{model_name}' has no official phone_agent prompt template "
-                f"(supported: AutoGLM, UI-TARS, Qwen-VL, GLM-4V, MAI-UI, GUI-Owl). "
-                f"Falling back to AutoGLM template — performance may be affected. "
-                f"Consider configuring a dedicated GUI model via tools.gui.guiApiKey."
-            )
-        return None
 
     async def _check_device_connection(self) -> str | None:
         """

@@ -153,14 +153,15 @@ class AgentLoop:
                 device_type=self._gui_config.device_type,
                 device_id=self._gui_config.device_id,
                 max_steps=self._gui_config.max_steps,
-                lang=self._gui_config.lang,
+                use_external_model=self._gui_config.use_external_model,
                 current_base_url=self._current_api_base,
                 current_api_key=self._current_api_key,
                 current_model_name=self.model,
                 gui_base_url=self._gui_config.gui_base_url,
                 gui_api_key=self._gui_config.gui_api_key,
                 gui_model_name=self._gui_config.gui_model_name,
-                gui_model_type=self._gui_config.gui_model_type,
+                prompt_template_lang=self._gui_config.prompt_template_lang,
+                prompt_template_style=self._gui_config.prompt_template_style,
             ))
 
     async def _connect_mcp(self) -> None:

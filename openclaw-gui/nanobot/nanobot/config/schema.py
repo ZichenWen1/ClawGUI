@@ -3,7 +3,7 @@
 from pathlib import Path
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 from pydantic.alias_generators import to_camel
 from pydantic_settings import BaseSettings
 
@@ -142,12 +142,27 @@ class GUIToolConfig(Base):
     device_type: str = "adb"           # adb / hdc
     device_id: str | None = None       # Specific device ID (auto-detect if None)
     max_steps: int = 50
-    lang: str = "cn"
-    # External GUI model config (optional, for specialized VLM)
-    gui_base_url: str = "https://open.bigmodel.cn/api/paas/v4/"
+    # Whether to use the external GUI model (true) or the nanobot model (false).
+    use_external_model: bool = False
+    # External GUI model config (required when use_external_model=true)
+    gui_base_url: str = ""
     gui_api_key: str = ""
     gui_model_name: str = "autoglm-phone"
-    gui_model_type: str = "autoglm"
+    # Prompt template controls
+    prompt_template_lang: str = "cn"   # Language for prompt template: "cn" or "en"
+    prompt_template_style: str = "autoglm"  # Prompt template style: autoglm / uitars / qwenvl / maiui / guiowl
+
+    @model_validator(mode="after")
+    def _check_external_model_config(self) -> "GUIToolConfig":
+        if self.use_external_model and not self.gui_api_key:
+            raise ValueError(
+                "tools.gui.guiApiKey must be set when tools.gui.useExternalModel is true."
+            )
+        if self.use_external_model and not self.gui_base_url:
+            raise ValueError(
+                "tools.gui.guiBaseUrl must be set when tools.gui.useExternalModel is true."
+            )
+        return self
 
 
 class ToolsConfig(Base):
