@@ -11,17 +11,24 @@ transformers>=4.57.3
 
 ## 下载 Benchmark 图片
 
-评测所需的图片托管在 Hugging Face 上，运行评测前请先下载并解压：
+评测所需的图片托管在 Hugging Face 和 ModelScope 上，运行评测前请先下载并解压。
+
+**方式一：Hugging Face**
 
 ```bash
-# 安装 huggingface_hub（如未安装）
 pip install huggingface_hub
 
-# 下载图片压缩包
 huggingface-cli download johnzqlu/opengui-eval image.tar.gz --repo-type dataset --local-dir .
 
-# 解压到 opengui-eval/image/
 tar -xzf image.tar.gz
+```
+
+**方式二：ModelScope**
+
+```python
+from modelscope.msdatasets import MsDataset
+
+ds = MsDataset.load('Matrix0602/opengui-eval')
 ```
 
 解压后的目录结构如下：

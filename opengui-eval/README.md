@@ -11,17 +11,24 @@ transformers>=4.57.3
 
 ## Download Benchmark Images
 
-The benchmark images are hosted on Hugging Face. Download and extract them before running evaluation:
+The benchmark images are available on both Hugging Face and ModelScope. Download and extract them before running evaluation.
+
+**Option A: Hugging Face**
 
 ```bash
-# Install huggingface_hub if needed
 pip install huggingface_hub
 
-# Download the image archive
 huggingface-cli download johnzqlu/opengui-eval image.tar.gz --repo-type dataset --local-dir .
 
-# Extract into opengui-eval/image/
 tar -xzf image.tar.gz
+```
+
+**Option B: ModelScope**
+
+```python
+from modelscope.msdatasets import MsDataset
+
+ds = MsDataset.load('Matrix0602/opengui-eval')
 ```
 
 After extraction, you should have the following structure:
