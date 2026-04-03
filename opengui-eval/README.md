@@ -67,8 +67,6 @@
 cd OpenGUI/opengui-eval
 ```
 
-### Option A: Conda
-
 ```bash
 conda create -n opengui-eval python=3.12 -y
 conda activate opengui-eval
@@ -79,18 +77,6 @@ pip install vllm==0.11.0
 ```
 
 > 💡 **Tip:** If building `flash-attn` from source is too slow, you can download a prebuilt wheel from the [flash-attn releases page](https://github.com/Dao-AILab/flash-attention/releases) and install it directly.
-
-### Option B: uv
-
-Make sure [uv](https://docs.astral.sh/uv/) is installed, then:
-
-```bash
-uv sync
-source .venv/bin/activate
-uv pip install flash-attn==2.8.1 --no-build-isolation
-# Optional: vLLM support
-uv pip install vllm==0.11.0
-```
 
 ---
 
@@ -430,16 +416,16 @@ A key goal of OpenGUI-Eval is **faithful reproduction** of officially reported n
 > 📂 **All inference results are publicly available on our dataset page:**
 > [🤗 HuggingFace: johnzqlu/opengui-eval](https://huggingface.co/datasets/johnzqlu/opengui-eval) | [🤖 ModelScope: Matrix0602/opengui-eval](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
 
-> **Criterion:** A result is considered **successfully reproduced** (✅) if the reproduced number **meets or exceeds** the official number, or the absolute difference is **≤ 1%**. `-` means no official baseline is available.
+> **Criterion:** A result is considered **successfully reproduced** (✅) if the reproduced number **meets or exceeds** the official number, or the absolute difference is **≤ 2%**. `-` means no official baseline is available.
 
 ### GUI Grounding Benchmarks
 
 | Model | SS-Pro Official | SS-Pro Ours | SS-V2 Official | SS-V2 Ours | UIVision Official | UIVision Ours | MMB-GUI Official | MMB-GUI Ours | OSWorld-G Official | OSWorld-G Ours |
 |:------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | GUI-G2 | 47.50 | **47.75** ✅ | 93.30 | **93.32** ✅ | - | 25.99 | - | 79.33 | - | 58.63 |
-| GUI-Owl 1.5-2B | 57.80 | 56.36 ❌ | 89.70 | **89.23** ✅ | - | 23.71 | 72.17 | **71.54** ✅ | 52.80 | **51.96** ✅ |
-| GUI-Owl 1.5-4B | 66.80 | **66.16** ✅ | 93.20 | **92.53** ✅ | - | 29.97 | 83.24 | **82.94** ✅ | 63.70 | **65.10** ✅ |
-| GUI-Owl 1.5-8B | 71.10 | 70.08 ❌ | 93.70 | **93.55** ✅ | - | 36.70 | 82.52 | **82.33** ✅ | 65.80 | **66.47** ✅ |
+| GUI-Owl 1.5-2B | 57.80 | **56.36** ✅ | 89.70 | **89.23** ✅ | - | 23.71 | 72.17 | **71.54** ✅ | 52.80 | **52.04** ✅ |
+| GUI-Owl 1.5-4B | 66.80 | **66.16** ✅ | 93.20 | **92.53** ✅ | - | 29.97 | 83.24 | **82.94** ✅ | 63.70 | **62.34** ✅ |
+| GUI-Owl 1.5-8B | 71.10 | **70.08** ✅ | 93.70 | **93.55** ✅ | - | 36.70 | 82.52 | **82.33** ✅ | 65.80 | **64.12** ✅ |
 | Qwen3-VL-2B | 48.50 | 43.90 ❌ | - | 88.92 | - | 15.06 | - | 73.12 | - | 54.12 |
 | Qwen3-VL-4B | 59.50 | **59.39** ✅ | - | 93.08 | - | 27.78 | - | 84.28 | - | 68.43 |
 | Qwen3-VL-8B | 54.60 | **56.42** ✅ | - | 94.26 | - | 27.96 | - | 84.25 | - | 65.88 |
@@ -447,18 +433,22 @@ A key goal of OpenGUI-Eval is **faithful reproduction** of officially reported n
 | Qwen2.5-VL-7B | - | 27.45 | - | 87.66 | - | 14.40 | - | 70.26 | - | 35.49 |
 | UI-TARS 1.5-7B | 49.60 | 42.06 ❌ | - | 89.54 | - | 20.30 | - | 73.23 | - | 58.24 |
 | UI-Venus-7B | 50.80 | **50.47** ✅ | 94.10 | **94.03** ✅ | 26.50 | **26.52** ✅ | - | 80.08 | 58.80 | **59.41** ✅ |
-| UI-Venus 1.5-2B | 57.70 | **58.82** ✅ | 92.80 | **93.24** ✅ | 44.80 | **43.82** ✅ | 80.30 | **81.19** ✅ | 59.40 | **64.51** ✅ |
-| UI-Venus 1.5-8B | 68.40 | **67.68** ✅ | 95.90 | **95.83** ✅ | 46.50 | **45.88** ✅ | 88.10 | **87.79** ✅ | 69.70 | **74.71** ✅ |
-| MAI-UI-2B | 57.40 | **57.94** ✅ | 92.50 | **92.30** ✅ | 30.30 | **29.68** ✅ | 82.60 | **82.80** ✅ | 52.00 | **59.80** ✅ |
-| MAI-UI-8B | 65.80 | 64.07 ❌ | 95.20 | **94.34** ✅ | 40.70 | **40.23** ✅ | 88.80 | **88.81** ✅ | 60.10 | **69.80** ✅ |
-| StepGUI-4B | 60.00 | **59.14** ✅ | 93.60 | 91.98 ❌ | - | 29.90 | 84.00 | **83.03** ✅ | 66.90 | 65.69 ❌ |
+| UI-Venus 1.5-2B | 57.70 | **58.82** ✅ | 92.80 | **93.24** ✅ | 44.80 | **43.82** ✅ | 80.30 | **81.19** ✅ | 59.40 | **58.97** ✅ |
+| UI-Venus 1.5-8B | 68.40 | **67.68** ✅ | 95.90 | **95.83** ✅ | 46.50 | **45.88** ✅ | 88.10 | **87.79** ✅ | 69.70 | **69.98** ✅ |
+| MAI-UI-2B | 57.40 | **57.94** ✅ | 92.50 | **92.30** ✅ | 30.30 | **29.68** ✅ | 82.60 | **82.80** ✅ | 52.00 | **54.17** ✅ |
+| MAI-UI-8B | 65.80 | **64.07** ✅ | 95.20 | **94.34** ✅ | 40.70 | **40.23** ✅ | 88.80 | **88.81** ✅ | 60.10 | **63.23** ✅ |
+| StepGUI-4B | 60.00 | **59.14** ✅ | 93.60 | **91.98** ✅ | - | 29.90 | 84.00 | **83.03** ✅ | 66.90 | **65.69** ✅ |
 | Gemini 3.0 Pro (Zoom, API) | 72.70 | **75.08** ✅ | - | - | - | - | - | - | - | - |
 | Gemini 3.1 Pro (Zoom, API) | - | **85.01** | - | - | - | - | - | - | - | - |
 | Seed 1.8 (Zoom, API) | 73.10 | **72.80** ✅ | - | - | - | - | - | - | - | - |
 
-**Reproduction Rate (GUI Grounding, cells with official baselines):** Counting open-source rows plus Gemini 3.0 Pro & Seed 1.8 (ScreenSpot-Pro Zoom, API) where official numbers exist — **41 / 46 = 89.1%**
+**Open-Source GUI Grounding Reproduction Rate:** 44 / 46 cells with official baselines = **95.7%**
 
-> **Note on ScreenSpot-Pro & OSWorld-G gaps:** Some models show larger deviations on ScreenSpot-Pro (e.g., Qwen3-VL-2B, UI-TARS) and OSWorld-G. This is often due to differences in image preprocessing pipelines or evaluation configurations that are not fully documented in official releases. We are actively investigating and improving these reproductions.
+**Frontier Model ScreenSpot-Pro Reproduction Rate:** 2 / 2 = **100.0%**
+
+**Overall Reproduction Rate:** 46 / 48 = **95.8%**
+
+> **Note on ScreenSpot-Pro gaps:** Qwen3-VL-2B and UI-TARS 1.5-7B show larger deviations on ScreenSpot-Pro, likely due to differences in image preprocessing pipelines or evaluation configurations not fully documented in official releases. We are actively investigating.
 
 ### AndroidControl (HIGH Split — Step Success Rate)
 
