@@ -102,7 +102,7 @@ pip install -U huggingface_hub
 # 如果 HF 访问困难，请使用镜像：
 # export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download johnzqlu/opengui-eval image.zip data.zip --repo-type dataset --local-dir .
+huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
 ```
 
 **从 ModelScope 下载：**
@@ -113,15 +113,22 @@ pip install -U modelscope
 modelscope download --dataset Matrix0602/opengui-eval --local_dir .
 ```
 
-下载后在 `opengui-eval/` 目录下解压**两个**压缩包：
+下载后在 `opengui-eval/` 目录下解压压缩包：
 
 ```bash
 cd opengui-eval
 unzip image.zip
 unzip data.zip
+unzip output.zip
 ```
 
-> ⚠️ **注意：** `image.zip` 和 `data.zip` 都必须在 `opengui-eval/` 目录下解压，以确保数据文件中的相对路径能正确解析。
+> ⚠️ **注意：** 所有 zip 文件（`image.zip`、`data.zip`、`output.zip`）都必须在 `opengui-eval/` 目录下解压，以确保相对路径能正确解析。
+
+| 文件 | 内容 |
+|------|------|
+| `image.zip` | Benchmark 评测图片（`image/` 目录） |
+| `data.zip` | Benchmark 数据 & prompt 文件（`data/` 目录） |
+| `output.zip` | 预计算的推理 & 评判结果（`output/` 目录） |
 
 ---
 

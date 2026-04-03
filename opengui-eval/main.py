@@ -28,6 +28,7 @@ BENCHMARK_DATA_MAP = {
     "screenspot-v2-uivenus"   : "data/screenspot-v2-guig2.json",
     # screenspot-pro
     "screenspot-pro"          : "data/screenspot-pro.json",
+    "screenspot-pro-seed"     : "data/screenspot-pro.json",
     "screenspot-pro-qwen3vl"  : "data/screenspot-pro-qwen3vl.json",
     "screenspot-pro-qwen25vl" : "data/screenspot-pro-qwen25vl.json",
     "screenspot-pro-uitars"   : "data/screenspot-pro-uitars.json",
