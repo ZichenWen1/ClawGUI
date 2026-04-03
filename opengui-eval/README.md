@@ -74,6 +74,8 @@ conda create -n opengui-eval python=3.12 -y
 conda activate opengui-eval
 pip install -r requirements.txt
 pip install flash-attn==2.8.1 --no-build-isolation
+# Optional: vLLM support
+pip install vllm==0.11.0
 ```
 
 > 💡 **Tip:** If building `flash-attn` from source is too slow, you can download a prebuilt wheel from the [flash-attn releases page](https://github.com/Dao-AILab/flash-attention/releases) and install it directly.
@@ -86,6 +88,8 @@ Make sure [uv](https://docs.astral.sh/uv/) is installed, then:
 uv sync
 source .venv/bin/activate
 uv pip install flash-attn==2.8.1 --no-build-isolation
+# Optional: vLLM support
+uv pip install vllm==0.11.0
 ```
 
 ---

@@ -74,6 +74,8 @@ conda create -n opengui-eval python=3.12 -y
 conda activate opengui-eval
 pip install -r requirements.txt
 pip install flash-attn==2.8.1 --no-build-isolation
+# 可选：vLLM 支持
+pip install vllm==0.11.0
 ```
 
 > 💡 **提示：** 如果从源码编译 `flash-attn` 太慢，可以从 [flash-attn releases 页面](https://github.com/Dao-AILab/flash-attention/releases) 下载预编译的 wheel 包直接安装。
@@ -86,6 +88,8 @@ pip install flash-attn==2.8.1 --no-build-isolation
 uv sync
 source .venv/bin/activate
 uv pip install flash-attn==2.8.1 --no-build-isolation
+# 可选：vLLM 支持
+uv pip install vllm==0.11.0
 ```
 
 ---
