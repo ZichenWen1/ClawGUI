@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo_crop.png" width="200" alt="OpenGUI-Eval Logo">
+<img src="assets/logo_crop.png" width="350" alt="OpenGUI-Eval Logo">
 
 # OpenGUI-Eval: 统一的 GUI 评估框架
 
@@ -92,7 +92,7 @@ uv pip install flash-attn==2.8.1 --no-build-isolation
 
 ## 📥 下载数据
 
-评测所需的图片托管在 **Hugging Face** 和 **ModelScope** 上，运行评测前请先下载。
+评测所需的图片和数据文件托管在 **Hugging Face** 和 **ModelScope** 上，运行评测前请先下载。
 
 **从 Hugging Face 下载：**
 
@@ -102,7 +102,7 @@ pip install -U huggingface_hub
 # 如果 HF 访问困难，请使用镜像：
 # export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download johnzqlu/opengui-eval image.zip --repo-type dataset --local-dir .
+huggingface-cli download johnzqlu/opengui-eval image.zip data.zip --repo-type dataset --local-dir .
 ```
 
 **从 ModelScope 下载：**
@@ -113,11 +113,15 @@ pip install -U modelscope
 modelscope download --dataset Matrix0602/opengui-eval --local_dir .
 ```
 
-下载后解压：
+下载后在 `opengui-eval/` 目录下解压**两个**压缩包：
 
 ```bash
+cd opengui-eval
 unzip image.zip
+unzip data.zip
 ```
+
+> ⚠️ **注意：** `image.zip` 和 `data.zip` 都必须在 `opengui-eval/` 目录下解压，以确保数据文件中的相对路径能正确解析。
 
 ---
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/logo_crop.png" width="200" alt="OpenGUI-Eval Logo">
+<img src="assets/logo_crop.png" width="350" alt="OpenGUI-Eval Logo">
 
 # OpenGUI-Eval: A Unified GUI Evaluation Framework
 
@@ -92,7 +92,7 @@ uv pip install flash-attn==2.8.1 --no-build-isolation
 
 ## 📥 Download Data
 
-Benchmark images are hosted on **Hugging Face** and **ModelScope**. Download them before running evaluations.
+Benchmark images and data files are hosted on **Hugging Face** and **ModelScope**. Download them before running evaluations.
 
 **From Hugging Face:**
 
@@ -102,7 +102,7 @@ pip install -U huggingface_hub
 # If you have trouble accessing HF, use the mirror:
 # export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download johnzqlu/opengui-eval image.zip --repo-type dataset --local-dir .
+huggingface-cli download johnzqlu/opengui-eval image.zip data.zip --repo-type dataset --local-dir .
 ```
 
 **From ModelScope:**
@@ -113,12 +113,15 @@ pip install -U modelscope
 modelscope download --dataset Matrix0602/opengui-eval --local_dir .
 ```
 
-Then extract:
+Then extract **both** archives under the `opengui-eval/` directory:
 
 ```bash
+cd opengui-eval
 unzip image.zip
 unzip data.zip
 ```
+
+> ⚠️ **Important:** Both `image.zip` and `data.zip` must be extracted under the `opengui-eval/` directory to ensure the relative paths in the data files resolve correctly.
 
 ---
 
