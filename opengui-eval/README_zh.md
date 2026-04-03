@@ -200,8 +200,8 @@ opengui-eval/
 | `guig2` | GUI-G2 | 继承 Qwen2.5-VL | `[0, 1000]` | `vt` | ❌ 无 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `uivenus15` | UI-Venus 1.5 | 继承 Qwen3-VL | `[0, 1000]` | `vt` | ❌ 无 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `uivenus` | UI-Venus | 继承 GUI-G2 | `[0, 1000]` | `vt` | ❌ 无 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `gemini` | Gemini 3.x Pro | API（可选 Zoom） | `[0, 1000]` | `vt` | ✅ 内置 | ✅ | - | - | - | - | - |
-| `seed` | Seed 1.8 | API（可选 Zoom） | `[0, 1000]` | `vt` | ✅ 内置 | ✅ | - | - | - | - | - |
+| `gemini` | Gemini 3.x Pro | API（可选 Zoom） | `[0, 1000]` | `tv` | ✅ 内置 | ✅ | - | - | - | - | - |
+| `seed` | Seed 1.8 | API（可选 Zoom） | `[0, 1000]` | `tv` | ✅ 内置 | ✅ | - | - | - | - | - |
 
 ### 前沿 / 闭源模型
 
