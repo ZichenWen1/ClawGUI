@@ -117,6 +117,7 @@ Then extract:
 
 ```bash
 unzip image.zip
+unzip data.zip
 ```
 
 ---
