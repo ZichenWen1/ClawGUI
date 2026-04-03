@@ -448,8 +448,6 @@ A key goal of OpenGUI-Eval is **faithful reproduction** of officially reported n
 
 **Overall Reproduction Rate:** 46 / 48 = **95.8%**
 
-> **Note on ScreenSpot-Pro gaps:** Qwen3-VL-2B and UI-TARS 1.5-7B show larger deviations on ScreenSpot-Pro, likely due to differences in image preprocessing pipelines or evaluation configurations not fully documented in official releases. We are actively investigating.
-
 ### AndroidControl (HIGH Split — Step Success Rate)
 
 AndroidControl evaluates **offline navigation** with multi-action prediction (click, type, scroll, etc.). We currently support **Qwen3-VL** and **Qwen2.5-VL** on this benchmark.

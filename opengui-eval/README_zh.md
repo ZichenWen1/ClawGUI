@@ -448,8 +448,6 @@ OpenGUI-Eval 的核心目标之一是**忠实复现**官方公布的数值。下
 
 **总体复现率：** 46 / 48 = **95.8%**
 
-> **关于 ScreenSpot-Pro 偏差说明：** Qwen3-VL-2B 和 UI-TARS 1.5-7B 在 ScreenSpot-Pro 上偏差较大，通常是由于官方未完整披露的图像预处理流程或评测配置差异所致。我们正在积极排查并改进。
-
 ### AndroidControl（HIGH Split — Step Success Rate）
 
 AndroidControl 评测**离线导航**能力，包含多动作预测（点击、输入、滚动等）。目前支持 **Qwen3-VL** 和 **Qwen2.5-VL**。
