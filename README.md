@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1>
-  <img src="assets/OpenGUI-Logo.png" height="45" alt="OpenGUI Logo" style="vertical-align:bottom; margin-right:10px; margin-top:14px;">
+  <img src="assets/OpenGUI-Logo.png" height="45" alt="OpenGUI Logo" style="vertical-align:-12px; margin-right:8px;">
   OpenGUI: A Unified GUI Agent Harness
 </h1>
 
@@ -65,7 +65,13 @@ OpenGUI consists of three independent modules. Click into each one for full inst
 
 > 📁 [`openclaw-gui/`](openclaw-gui/) · 📖 [Full Documentation](openclaw-gui/README.md)
 
-OpenClaw-GUI lets you control Android / HarmonyOS / iOS devices with natural language by sending messages through popular chat platforms (Feishu, DingTalk, Telegram, Discord, Slack, QQ, and more). Built on [OpenClaw](https://github.com/openclaw/openclaw) and [nanobot](https://github.com/HKUDS/nanobot), it supports AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, and UI-TARS via OpenAI-compatible APIs. A built-in personalized memory system automatically learns your preferences and improves over time. Every task execution is recorded as a structured episode for replay and dataset building. A Gradio Web UI is also provided for interactive use.
+OpenClaw-GUI is a GUI agent inference framework that lets you control mobile devices with natural language through 12+ chat platforms (Feishu, DingTalk, Telegram, Discord, Slack, QQ, and more).
+
+- 📱 **Cross-platform** — Android (ADB), HarmonyOS (HDC), iOS (XCTest)
+- 🤖 **Multi-model** — AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, UI-TARS via OpenAI-compatible API
+- 🧠 **Personalized memory** — Automatically learns user preferences and injects context across tasks
+- 📝 **Episode recording** — Every task saved as structured episodes for replay and dataset building
+- 🖥️ **Web UI** — Gradio interface for device management, task execution, and memory inspection
 
 <div align="center">
 <img src="openclaw-gui/assets/openclaw-gui-logo.png" width="75%" alt="OpenClaw-GUI">
@@ -79,7 +85,12 @@ OpenClaw-GUI lets you control Android / HarmonyOS / iOS devices with natural lan
 
 > 📁 [`opengui-eval/`](opengui-eval/) · 📖 [Full Documentation](opengui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
 
-OpenGUI-Eval is a standardized evaluation framework for GUI grounding models, adopting a three-stage **Infer → Judge → Metric** pipeline. It covers 6 benchmarks (ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl) with 11+ supported models including Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, and Seed 1.8. Both local GPU and remote API backends are supported, with multi-GPU parallel inference and automatic resume. Reproduction rate: **95.8%**.
+OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-stage **Infer → Judge → Metric** pipeline and a **95.8%** reproduction rate against official results.
+
+- 📊 **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
+- 🤖 **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
+- 🔌 **Dual backend** — Local GPU (`transformers`) or remote API (OpenAI-compatible)
+- ⚡ **Multi-GPU & multi-thread** — Parallel inference with automatic resume
 
 <div align="center">
 <img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
@@ -93,7 +104,13 @@ OpenGUI-Eval is a standardized evaluation framework for GUI grounding models, ad
 
 > 📁 [`opengui-rl/`](opengui-rl/) · 📖 [Full Documentation](opengui-rl/README.md)
 
-OpenGUI-RL is a scalable online RL infrastructure for GUI agent training. It supports parallel training across dozens of virtual Android environments (via Docker-based MobileWorld) and real-device training on physical or cloud phones. Includes GiGPO with PRM for fine-grained step-level reward, spare-server rotation for automatic failover, periodic environment restart for stability, and episode trajectory recording and visualization.
+OpenGUI-RL is a scalable online RL infrastructure for GUI agent training, supporting both virtual environment scaling and real-device training.
+
+- 🌐 **Parallel multi-environment** — Dozens of Docker-based virtual Android environments simultaneously
+- 📱 **Real-device training** — Physical or cloud Android phones
+- 🏆 **GiGPO + PRM** — Fine-grained step-level reward for better policy optimization than standard GRPO
+- ♻️ **Spare server rotation** — Automatic failover keeps training running without interruption
+- 🎬 **Episode visualization** — Record and replay any training trajectory
 
 <div align="center">
 <img src="opengui-rl/assets/opengui-rl-framework.png" width="75%" alt="OpenGUI-RL Architecture">

@@ -1,7 +1,7 @@
 <div align="center">
 
 <h1>
-  <img src="assets/OpenGUI-Logo.png" height="45" alt="OpenGUI Logo" style="vertical-align:bottom; margin-right:10px; margin-top:14px;">
+  <img src="assets/OpenGUI-Logo.png" height="45" alt="OpenGUI Logo" style="vertical-align:-12px; margin-right:8px;">
   OpenGUI：统一 GUI 智能体 Harness 系统
 </h1>
 
@@ -65,7 +65,13 @@ OpenGUI 由三个独立模块组成，点击各模块查看完整安装与使用
 
 > 📁 [`openclaw-gui/`](openclaw-gui/) · 📖 [完整文档](openclaw-gui/README.md)
 
-OpenClaw-GUI 让你通过飞书、钉钉、Telegram、Discord、Slack、QQ 等聊天平台，用自然语言远程控制 Android / 鸿蒙 / iOS 设备。基于 [OpenClaw](https://github.com/openclaw/openclaw) 与 [nanobot](https://github.com/HKUDS/nanobot) 构建，支持 AutoGLM、MAI-UI、GUI-Owl、Qwen-VL、UI-TARS 等多种模型，通过 OpenAI 兼容 API 接入。内置个性化记忆系统，自动学习用户偏好并持续改进。每次任务执行以结构化 Episode 形式记录，便于回放与数据集构建。同时提供 Gradio Web UI 进行可视化交互。
+OpenClaw-GUI 是一个 GUI 智能体推理框架，通过飞书、钉钉、Telegram 等 12+ 聊天平台，让你用自然语言远程控制手机完成各种任务。
+
+- 📱 **跨平台支持** — Android（ADB）、鸿蒙（HDC）、iOS（XCTest）
+- 🤖 **多模型接入** — AutoGLM、MAI-UI、GUI-Owl、Qwen-VL、UI-TARS，OpenAI 兼容 API
+- 🧠 **个性化记忆** — 自动学习用户偏好，跨任务持续复用
+- 📝 **Episode 记录** — 每次执行以结构化 Episode 保存，支持回放与数据集构建
+- 🖥️ **Web UI** — Gradio 界面，支持设备管理、任务执行与记忆查看
 
 <div align="center">
 <img src="openclaw-gui/assets/openclaw-gui-logo.png" width="75%" alt="OpenClaw-GUI">
