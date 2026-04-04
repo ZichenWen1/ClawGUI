@@ -29,13 +29,23 @@
 
 ---
 
+## 🎬 Demo: Natural Language-Driven GUI Evaluation
+
+<div align="center">
+
+<video src="assets/opengui-eval-demo.mp4" width="85%" controls></video>
+
+</div>
+
+---
+
 ## 📖 Overview
 
 **OpenGUI** is a full-stack, end-to-end agent harness system for GUI intelligence. It covers the complete lifecycle of a GUI agent — from **inference and deployment**, through **standardized evaluation**, to **online reinforcement learning training** — providing researchers and engineers with a unified, production-ready infrastructure.
 
 | Module | Description |
 |--------|-------------|
-| 🤖 **[OpenClaw-GUI](openclaw-gui/)** | GUI agent inference framework — control mobile devices via natural language through Feishu, DingTalk, Telegram and 12+ chat platforms, powered by VLMs and a personalized memory system |
+| 🤖 **[OpenClaw-GUI](openclaw-gui/)** | GUI agent framework — control mobile devices via natural language through 12+ chat platforms, and launch standardized GUI model evaluation with a single command |
 | 🚀 **[OpenGUI-RL](opengui-rl/)** | Scalable online RL training infrastructure — parallel multi-environment training, real-device support, GiGPO with PRM, robust spare-server rotation |
 | 📊 **[OpenGUI-Eval](opengui-eval/)** | Standardized GUI grounding evaluation suite — 6 benchmarks, 11+ models, 95%+ faithful reproduction of official results |
 | 🏆 **OpenGUI-2B** | State-of-the-art 2B GUI agent trained with GiGPO, achieving **17.1** MobileWorld SR |
@@ -61,14 +71,15 @@ OpenGUI consists of three independent modules. Click into each one for full inst
 
 ---
 
-### 🤖 OpenClaw-GUI — Agent Inference
+### 🤖 OpenClaw-GUI — Agent Inference & Evaluation
 
-> 📁 [`openclaw-gui/`](openclaw-gui/) · 📖 [Full Documentation](openclaw-gui/README.md)
+> 📁 [`openclaw-gui/`](openclaw-gui/) · 📖 [Full Documentation](openclaw-gui/README.md) · [English](openclaw-gui/README_EN.md)
 
-OpenClaw-GUI is a GUI agent inference framework that lets you control mobile devices with natural language through 12+ chat platforms (Feishu, DingTalk, Telegram, Discord, Slack, QQ, and more).
+OpenClaw-GUI is a GUI agent framework built on OpenClaw, providing two core capabilities: **GUI phone control** and **GUI model evaluation**. Control mobile devices with natural language through 12+ chat platforms, or launch standardized opengui-eval benchmarks with a single command.
 
 - 📱 **Cross-platform** — Android (ADB), HarmonyOS (HDC), iOS (XCTest)
 - 🤖 **Multi-model** — AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, UI-TARS via OpenAI-compatible API
+- 📊 **One-command evaluation** — Built-in opengui-eval skill: say "benchmark qwen3vl on screenspot-pro" and it handles env check → multi-GPU inference → judging → metrics → result comparison
 - 🧠 **Personalized memory** — Automatically learns user preferences and injects context across tasks
 - 📝 **Episode recording** — Every task saved as structured episodes for replay and dataset building
 - 🖥️ **Web UI** — Gradio interface for device management, task execution, and memory inspection
@@ -111,6 +122,7 @@ OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-s
 - 🤖 **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
 - 🔌 **Dual backend** — Local GPU (`transformers`) or remote API (OpenAI-compatible)
 - ⚡ **Multi-GPU & multi-thread** — Parallel inference with automatic resume
+- 🤖 **OpenClaw-GUI integration** — Pair with OpenClaw-GUI to run the full pipeline via natural language
 
 <div align="center">
 <img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
