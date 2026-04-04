@@ -345,10 +345,10 @@ python scripts/episode_visualizer.py --episode_dir episode/<your_episode>
 
 OpenGUI-RL 基于以下优秀的开源项目构建，在此衷心感谢各项目的贡献者：
 
-- [**verl-agent**](https://github.com/volcengine/verl) — 底层 RL 训练引擎
-- [**MAI-UI**](https://github.com/sugarandgugu/MAI-UI) — GUI-Spec 模型与 GUI 动作框架
-- [**MobileWorld**](https://github.com/X-PLUG/MobileWorld) — Android 模拟器环境
-- [**Mobile-Agent**](https://github.com/X-PLUG/MobileAgent) — 移动端智能体研究基础设施
+- [**verl-agent**](https://github.com/langfengq/verl-agent) — 底层 RL 训练引擎
+- [**MAI-UI**](https://github.com/Tongyi-MAI/MAI-UI) — GUI-Spec 模型与 GUI 动作框架
+- [**MobileWorld**](https://github.com/Tongyi-MAI/MobileWorld) — Android 模拟器环境
+- [**Mobile-Agent**](https://github.com/x-plug/mobileagent) — 移动端智能体研究基础设施
 
 ---
 
