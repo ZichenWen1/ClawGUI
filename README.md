@@ -107,12 +107,12 @@ OpenGUI-RL is a scalable online RL infrastructure for GUI agent training. It sup
 
 OpenGUI is built upon the following excellent open-source projects. We sincerely thank their contributors:
 
-- [**verl-agent**](https://github.com/langfengq/verl-agent) — The underlying RL training engine
-- [**MAI-UI**](https://github.com/Tongyi-MAI/MAI-UI) — GUI-Spec model and GUI action framework
-- [**MobileWorld**](https://github.com/Tongyi-MAI/MobileWorld) — Android emulator environment
-- [**Mobile-Agent**](https://github.com/x-plug/mobileagent) — Mobile agent research and infrastructure
-- [**nanobot**](https://github.com/HKUDS/nanobot) — Personal AI assistant and multi-platform gateway
-- [**Open-AutoGLM**](https://github.com/zai-org/Open-AutoGLM) — GUI agent framework for mobile automation
+- [**verl-agent**](https://github.com/langfengq/verl-agent) 
+- [**MAI-UI**](https://github.com/Tongyi-MAI/MAI-UI) 
+- [**MobileWorld**](https://github.com/Tongyi-MAI/MobileWorld) 
+- [**Mobile-Agent**](https://github.com/x-plug/mobileagent) 
+- [**nanobot**](https://github.com/HKUDS/nanobot) 
+- [**Open-AutoGLM**](https://github.com/zai-org/Open-AutoGLM) 
 
 ---
 
