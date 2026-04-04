@@ -23,8 +23,8 @@
 - [系统架构](#️-系统架构)
 - [快速开始](#-快速开始)
   - [OpenClaw-GUI — 智能体推理](#-openclaw-gui--智能体推理)
-  - [OpenGUI-Eval — 评测](#-opengui-eval--评测)
   - [OpenGUI-RL — Online RL 训练](#-opengui-rl--online-rl-训练)
+  - [OpenGUI-Eval — 评测](#-opengui-eval--评测)
 - [致谢](#-致谢)
 
 ---
@@ -36,8 +36,8 @@
 | 模块 | 说明 |
 |------|------|
 | 🤖 **[OpenClaw-GUI](openclaw-gui/)** | GUI 智能体推理框架 — 通过飞书、钉钉、Telegram 等 12+ 聊天平台以自然语言控制手机，配备个性化记忆系统 |
-| 📊 **[OpenGUI-Eval](opengui-eval/)** | 标准化 GUI Grounding 评测套件 — 6 个 Benchmark、11+ 模型，官方结果复现率 95%+ |
 | 🚀 **[OpenGUI-RL](opengui-rl/)** | 可扩展 Online RL 训练基础设施 — 多环境并行训练、真机支持、GiGPO+PRM、Spare Server 轮转 |
+| 📊 **[OpenGUI-Eval](opengui-eval/)** | 标准化 GUI Grounding 评测套件 — 6 个 Benchmark、11+ 模型，官方结果复现率 95%+ |
 | 🏆 **OpenGUI-2B** | 基于 GiGPO 训练的 2B GUI 智能体，MobileWorld SR 达到 **17.1** |
 
 ---
@@ -81,31 +81,42 @@ OpenClaw-GUI 是一个 GUI 智能体推理框架，通过飞书、钉钉、Teleg
 
 ---
 
-### 📊 OpenGUI-Eval — 评测
-
-> 📁 [`opengui-eval/`](opengui-eval/) · 📖 [完整文档](opengui-eval/README.md) · [🤗 HuggingFace](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
-
-OpenGUI-Eval 是面向 GUI Grounding 模型的标准化评测框架，采用**推理 → 判断 → 指标**三阶段 Pipeline。覆盖 6 个 Benchmark（ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl），支持 11+ 模型，包括 Qwen3-VL、Qwen2.5-VL、UI-TARS、MAI-UI、GUI-G2、UI-Venus、Gemini、Seed 1.8 等。支持本地 GPU 与远端 API 双后端，多 GPU 并行推理，支持断点续跑。对官方数据的复现率达到 **95.8%**。
-
-<div align="center">
-<img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval 架构图">
-</div>
-
-→ **[查看 OpenGUI-Eval 完整文档](opengui-eval/README.md)**
-
----
-
 ### 🚀 OpenGUI-RL — Online RL 训练
 
 > 📁 [`opengui-rl/`](opengui-rl/) · 📖 [完整文档](opengui-rl/README.md)
 
-OpenGUI-RL 是面向 GUI 智能体训练的可扩展 Online RL 基础设施。支持在数十个 Docker 虚拟 Android 环境中并行训练（基于 MobileWorld），同时支持真实手机或云手机的真机训练。集成 GiGPO 算法与 PRM 实现细粒度逐步奖励，内置 Spare Server 轮转自动故障转移，环境周期性重启保障稳定性，Episode 轨迹记录与可视化一体化。
+OpenGUI-RL 是面向 GUI 智能体训练的可扩展 Online RL 基础设施，支持虚拟环境大规模 Scaling 与真机训练。
+
+- 🌐 **多环境并行** — 数十个 Docker 虚拟 Android 环境同时运行
+- 📱 **真机训练** — 物理手机或云手机均可
+- 🏆 **GiGPO + PRM** — 细粒度逐步奖励，策略优化优于标准 GRPO
+- ♻️ **Spare Server 轮转** — 自动故障转移，训练不中断
+- 🎬 **Episode 可视化** — 记录并回放任意训练轨迹
 
 <div align="center">
 <img src="opengui-rl/assets/opengui-rl-framework.png" width="75%" alt="OpenGUI-RL 架构图">
 </div>
 
 → **[查看 OpenGUI-RL 完整文档](opengui-rl/README.md)**
+
+---
+
+### 📊 OpenGUI-Eval — 评测
+
+> 📁 [`opengui-eval/`](opengui-eval/) · 📖 [完整文档](opengui-eval/README.md) · [🤗 HuggingFace](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+
+OpenGUI-Eval 是面向 GUI Grounding 模型的标准化评测框架，采用**推理 → 判断 → 指标**三阶段 Pipeline，对官方数据复现率达到 **95.8%**。
+
+- 📊 **6 个 Benchmark** — ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
+- 🤖 **11+ 模型** — Qwen3-VL、Qwen2.5-VL、UI-TARS、MAI-UI、GUI-G2、UI-Venus、Gemini、Seed 1.8 等
+- 🔌 **双后端** — 本地 GPU（transformers）或远端 API（OpenAI 兼容）
+- ⚡ **多 GPU & 多线程** — 并行推理，支持断点续跑
+
+<div align="center">
+<img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval 架构图">
+</div>
+
+→ **[查看 OpenGUI-Eval 完整文档](opengui-eval/README.md)**
 
 ---
 

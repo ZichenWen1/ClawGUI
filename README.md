@@ -23,8 +23,8 @@
 - [Architecture](#️-architecture)
 - [Quick Start](#-quick-start)
   - [OpenClaw-GUI — Agent Inference](#-openclaw-gui--agent-inference)
-  - [OpenGUI-Eval — Evaluation](#-opengui-eval--evaluation)
   - [OpenGUI-RL — Online RL Training](#-opengui-rl--online-rl-training)
+  - [OpenGUI-Eval — Evaluation](#-opengui-eval--evaluation)
 - [Acknowledgements](#-acknowledgements)
 
 ---
@@ -36,8 +36,8 @@
 | Module | Description |
 |--------|-------------|
 | 🤖 **[OpenClaw-GUI](openclaw-gui/)** | GUI agent inference framework — control mobile devices via natural language through Feishu, DingTalk, Telegram and 12+ chat platforms, powered by VLMs and a personalized memory system |
-| 📊 **[OpenGUI-Eval](opengui-eval/)** | Standardized GUI grounding evaluation suite — 6 benchmarks, 11+ models, 95%+ faithful reproduction of official results |
 | 🚀 **[OpenGUI-RL](opengui-rl/)** | Scalable online RL training infrastructure — parallel multi-environment training, real-device support, GiGPO with PRM, robust spare-server rotation |
+| 📊 **[OpenGUI-Eval](opengui-eval/)** | Standardized GUI grounding evaluation suite — 6 benchmarks, 11+ models, 95%+ faithful reproduction of official results |
 | 🏆 **OpenGUI-2B** | State-of-the-art 2B GUI agent trained with GiGPO, achieving **17.1** MobileWorld SR |
 
 ---
@@ -81,25 +81,6 @@ OpenClaw-GUI is a GUI agent inference framework that lets you control mobile dev
 
 ---
 
-### 📊 OpenGUI-Eval — Evaluation
-
-> 📁 [`opengui-eval/`](opengui-eval/) · 📖 [Full Documentation](opengui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
-
-OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-stage **Infer → Judge → Metric** pipeline and a **95.8%** reproduction rate against official results.
-
-- 📊 **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
-- 🤖 **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
-- 🔌 **Dual backend** — Local GPU (`transformers`) or remote API (OpenAI-compatible)
-- ⚡ **Multi-GPU & multi-thread** — Parallel inference with automatic resume
-
-<div align="center">
-<img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
-</div>
-
-→ **[Get started with OpenGUI-Eval](opengui-eval/README.md)**
-
----
-
 ### 🚀 OpenGUI-RL — Online RL Training
 
 > 📁 [`opengui-rl/`](opengui-rl/) · 📖 [Full Documentation](opengui-rl/README.md)
@@ -117,6 +98,25 @@ OpenGUI-RL is a scalable online RL infrastructure for GUI agent training, suppor
 </div>
 
 → **[Get started with OpenGUI-RL](opengui-rl/README.md)**
+
+---
+
+### 📊 OpenGUI-Eval — Evaluation
+
+> 📁 [`opengui-eval/`](opengui-eval/) · 📖 [Full Documentation](opengui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+
+OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-stage **Infer → Judge → Metric** pipeline and a **95.8%** reproduction rate against official results.
+
+- 📊 **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
+- 🤖 **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
+- 🔌 **Dual backend** — Local GPU (`transformers`) or remote API (OpenAI-compatible)
+- ⚡ **Multi-GPU & multi-thread** — Parallel inference with automatic resume
+
+<div align="center">
+<img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
+</div>
+
+→ **[Get started with OpenGUI-Eval](opengui-eval/README.md)**
 
 ---
 
