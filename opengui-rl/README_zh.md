@@ -158,10 +158,19 @@ pip install swanlab
 
 #### 第 7 步 — 启动训练
 
+运行前请确认以下关键配置项已正确填写：
+
+- **`CUDA_VISIBLE_DEVICES`** — 设置为实际使用的 GPU 编号，如 `export CUDA_VISIBLE_DEVICES=4,5,6,7`
+- **`data_source_dir`** — 填入 geometry3k 数据集的本地路径，如 `~/data/geometry3k`
+- **`n_gpus`** — 与 `CUDA_VISIBLE_DEVICES` 中的 GPU 数量保持一致
+- **`train_data_size`** 和 **`group_size`** — 根据显存大小和环境数量调整；注意环境 URL 总数必须 ≥ `train_data_size × group_size`
+- **`step_reward_judge`** — 标准 GRPO 训练时设为 `False`，无需配置 PRM
+- **`env_restart_enable`** — 初次测试时可设为 `False`；长时间生产训练建议开启
+
 > **重要 — 服务器数量要求：**
-> `mobileworld_server.txt` 中的 URL 数量必须 **≥ `train_batch_size` × `group_size`**（即并行 Rollout Worker 的总数）。我们强烈建议在此基础上额外注册若干 **Spare Server**。虚拟容器容易出现各种错误（如截图失败、任务初始化错误、设备不健康等），当正在使用的服务器报错时，系统将自动轮转至 Spare Server，保证训练不中断。
+> `mobileworld_server.txt` 中的 URL 数量必须 **≥ `train_batch_size` × `group_size`**。强烈建议额外注册若干 **Spare Server**。虚拟容器容易出现截图失败、任务初始化错误、设备不健康等问题，当活跃服务器报错时系统将自动轮转至 Spare Server，保证训练不中断。
 >
-> **示例：** 若 `train_batch_size=4`，`group_size=4`，则至少需要 16 个活跃服务器。注册 24 个 URL，则有 8 个作为 Spare Server 待命。
+> **示例：** 若 `train_batch_size=4`，`group_size=4`，则至少需要 16 个活跃服务器，注册 24 个 URL 则有 8 个作为 Spare Server 待命。
 
 ```bash
 bash examples/grpo_trainer/run_mobileworld.sh
