@@ -46,6 +46,7 @@
 - 🧩 **易于扩展** — 继承基类即可添加新模型
 - ✅ **忠实复现** — 提供详细的官方 vs. 复现结果对比（[查看详情](#-复现结果)）
 - 🌐 **前沿模型评测** — 成功复现 Gemini 3.0 Pro 和 Seed 1.8 在 ScreenSpot-Pro 上的官方结果，并新增 Gemini 3.1 Pro 评测
+- 🤖 **OpenClaw-GUI 集成** — 搭配 [OpenClaw-GUI](../openclaw-gui) 使用，一句自然语言即可启动完整评测流程（环境检测 → 推理 → 判分 → 指标），适合懒人一键跑评测。详见 [OpenClaw-GUI README](../openclaw-gui/README.md#-opengui-eval-评测)
 
 ---
 

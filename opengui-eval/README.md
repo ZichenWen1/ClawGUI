@@ -46,6 +46,7 @@
 - 🧩 **Easily extensible** — Add new models by inheriting a simple base class
 - ✅ **Faithful reproduction** — Comprehensive reproduction results with detailed official vs. reproduced comparisons ([see details](#-reproduction-results))
 - 🌐 **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro, and added Gemini 3.1 Pro evaluation
+- 🤖 **OpenClaw-GUI integration** — Pair with [OpenClaw-GUI](../openclaw-gui) to launch the full evaluation pipeline with a single natural language command (env check → inference → judging → metrics). See [OpenClaw-GUI README](../openclaw-gui/README_EN.md#-opengui-eval-evaluation) for setup details
 
 ---
 
