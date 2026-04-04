@@ -19,7 +19,7 @@
 - [Architecture](#️-architecture)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
-  - [Virtual Environment Scaling (MobileWorld)](#1-virtual-environment-scaling-mobileworld)
+  - [Virtual Environment Scaling](#1-virtual-environment-scaling)
   - [Real Device Training](#2-real-device-training)
 - [How to Add a New Environment](#-how-to-add-a-new-environment)
 - [Experimental Results](#-experimental-results)
@@ -65,6 +65,8 @@ conda activate opengui-rl
 pip3 install vllm==0.11.0
 
 pip3 install flash-attn==2.7.4.post1 --no-build-isolation --no-cache-dir
+
+pip install datasets
 
 pip install -e .
 ```
@@ -116,9 +118,13 @@ http://127.0.0.1:5002
 
 Download the [hiyouga/geometry3k](https://huggingface.co/datasets/hiyouga/geometry3k) dataset to a local directory. This dataset is used by the data preprocessing pipeline as a curriculum data source.
 
-```bash
-huggingface-cli download hiyouga/geometry3k --repo-type dataset --local-dir ~/data/geometry3k
+```python
+from datasets import load_dataset
+ds = load_dataset("hiyouga/geometry3k")
+ds.save_to_disk("~/data/geometry3k")
 ```
+
+> If you have trouble accessing Hugging Face, use the mirror: `export HF_ENDPOINT=https://hf-mirror.com` before running.
 
 #### Step 5 — Configure the training script
 
@@ -158,8 +164,17 @@ You can replace it with other loggers (e.g., `wandb`, `tensorboard`) by modifyin
 
 #### Step 7 — Launch training
 
+Before running, make sure the following key fields in the script are correctly set:
+
+- **`CUDA_VISIBLE_DEVICES`** — Set to the GPU indices you want to use, e.g. `export CUDA_VISIBLE_DEVICES=4,5,6,7`
+- **`data_source_dir`** — Set to the path where you downloaded geometry3k, e.g. `~/data/geometry3k`
+- **`n_gpus`** — Should match the number of GPUs in `CUDA_VISIBLE_DEVICES`
+- **`train_data_size`** and **`group_size`** — Adjust based on your GPU memory and number of environments. Note that the total number of environment URLs must be ≥ `train_data_size × group_size`
+- **`step_reward_judge`** — For standard GRPO training, set to `False` (no PRM required)
+- **`env_restart_enable`** — Can be set to `False` for initial testing; enable for long-running production runs
+
 > **Important — Server count requirement:**
-> The number of URLs in `mobileworld_server.txt` must be **≥ `train_batch_size` × `group_size`** (i.e., the total number of parallel rollout workers). We strongly recommend registering **extra spare servers** beyond this minimum. Virtual containers are prone to errors (e.g., screenshot failures, task init errors, unhealthy device state). When an active server encounters an error, the system will automatically rotate to a spare server to keep training running without interruption.
+> The number of URLs in `mobileworld_server.txt` must be **≥ `train_batch_size` × `group_size`**. We strongly recommend registering **extra spare servers** beyond this minimum. Virtual containers are prone to errors (e.g., screenshot failures, task init errors, unhealthy device state). When an active server encounters an error, the system will automatically rotate to a spare server to keep training running without interruption.
 >
 > **Example:** If `train_batch_size=4` and `group_size=4`, you need at least 16 active servers. Registering 24 URLs gives you 8 spare servers for rotation.
 
@@ -341,16 +356,9 @@ We release **OpenGUI-2B**, a GUI agent trained using the OpenGUI-RL framework wi
 
 ---
 
-## 🙏 Acknowledgements
+## 📄 License
 
-OpenGUI-RL is built upon the following excellent open-source projects. We sincerely thank their contributors:
-
-- [**verl-agent**](https://github.com/langfengq/verl-agent) — The underlying RL training engine
-- [**MAI-UI**](https://github.com/Tongyi-MAI/MAI-UI) — GUI-Spec model and GUI action framework
-- [**MobileWorld**](https://github.com/Tongyi-MAI/MobileWorld) — Android emulator environment
-- [**Mobile-Agent**](https://github.com/x-plug/mobileagent) — Mobile agent research and infrastructure
-
----
+This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## 📄 License
 
