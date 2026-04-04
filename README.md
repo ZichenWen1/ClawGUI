@@ -52,102 +52,54 @@
 
 ## 🚀 Quick Start
 
-First, clone the repository:
-
 ```bash
 git clone https://github.com/sugarandgugu/OpenGUI.git
 cd OpenGUI
 ```
 
-OpenGUI consists of three independent modules. Follow the guide for whichever you need.
+OpenGUI consists of three independent modules. Click into each one for full installation and usage instructions.
 
 ---
 
 ### 🤖 OpenClaw-GUI — Agent Inference
 
-> [`openclaw-gui/`](openclaw-gui/)
+> 📁 [`openclaw-gui/`](openclaw-gui/) · 📖 [Full Documentation](openclaw-gui/README.md)
 
-OpenClaw-GUI lets you control Android / HarmonyOS / iOS devices with natural language by sending messages through popular chat platforms (Feishu, DingTalk, Telegram, Discord, Slack, QQ, and more). It is built on [OpenClaw](https://github.com/openclaw/openclaw) and [nanobot](https://github.com/HKUDS/nanobot), supporting AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, and UI-TARS via OpenAI-compatible APIs. A built-in personalized memory system automatically learns your preferences and improves over time. Every task execution is recorded as a structured episode for replay and dataset building. A Gradio Web UI is also provided for interactive use.
+OpenClaw-GUI lets you control Android / HarmonyOS / iOS devices with natural language by sending messages through popular chat platforms (Feishu, DingTalk, Telegram, Discord, Slack, QQ, and more). Built on [OpenClaw](https://github.com/openclaw/openclaw) and [nanobot](https://github.com/HKUDS/nanobot), it supports AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, and UI-TARS via OpenAI-compatible APIs. A built-in personalized memory system automatically learns your preferences and improves over time. Every task execution is recorded as a structured episode for replay and dataset building. A Gradio Web UI is also provided for interactive use.
 
-```bash
-cd openclaw-gui
+<div align="center">
+<img src="openclaw-gui/assets/openclaw-gui-logo.png" width="75%" alt="OpenClaw-GUI">
+</div>
 
-uv venv .venv && source .venv/bin/activate
-uv pip install -e .
-uv pip install -e nanobot/
-
-# Initialize configuration
-nanobot onboard
-
-# Start via chat platform gateway
-nanobot gateway
-
-# Or launch the Web UI
-python webui.py
-```
-
-> For device connection (ADB / HDC / iOS) and chat platform setup, see [`openclaw-gui/README.md`](openclaw-gui/README.md).
+→ **[Get started with OpenClaw-GUI](openclaw-gui/README.md)**
 
 ---
 
 ### 📊 OpenGUI-Eval — Evaluation
 
-> [`opengui-eval/`](opengui-eval/) | [🤗 HuggingFace Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) | [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+> 📁 [`opengui-eval/`](opengui-eval/) · 📖 [Full Documentation](opengui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
 
-OpenGUI-Eval is a standardized evaluation framework for GUI grounding models. It adopts a three-stage **Infer → Judge → Metric** pipeline and covers 6 benchmarks (ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl) with 11+ supported models including Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, and Seed 1.8. Both local GPU (transformers) and remote API backends are supported, with multi-GPU parallel inference and automatic resume. Reproduction rate against official numbers: **95.8%**.
+OpenGUI-Eval is a standardized evaluation framework for GUI grounding models, adopting a three-stage **Infer → Judge → Metric** pipeline. It covers 6 benchmarks (ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl) with 11+ supported models including Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, and Seed 1.8. Both local GPU and remote API backends are supported, with multi-GPU parallel inference and automatic resume. Reproduction rate: **95.8%**.
 
-```bash
-cd opengui-eval
+<div align="center">
+<img src="opengui-eval/assets/opengui-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
+</div>
 
-conda create -n opengui-eval python=3.12 -y
-conda activate opengui-eval
-pip install -r requirements.txt
-pip install flash-attn==2.8.1 --no-build-isolation
-
-# Download benchmark data
-huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
-
-# Run inference → judge → metric
-bash scripts/infer/transformers/qwen3vl_run_transformers.sh
-bash scripts/judge/screenspot-pro_run_judge.sh
-bash scripts/metric/run_metric_screenspot_pro.sh
-```
-
-> For full benchmark coverage, model support, and parameter details, see [`opengui-eval/README.md`](opengui-eval/README.md).
+→ **[Get started with OpenGUI-Eval](opengui-eval/README.md)**
 
 ---
 
 ### 🚀 OpenGUI-RL — Online RL Training
 
-> [`opengui-rl/`](opengui-rl/)
+> 📁 [`opengui-rl/`](opengui-rl/) · 📖 [Full Documentation](opengui-rl/README.md)
 
-OpenGUI-RL is a scalable online RL infrastructure for GUI agent training. It supports parallel training across dozens of virtual Android environments (via Docker-based MobileWorld), as well as real-device training on physical or cloud phones. Out-of-the-box support for MAI-UI and GUI-Owl, extensible to the Qwen3-VL family. Includes the GiGPO algorithm with PRM for fine-grained step-level reward, spare-server rotation for automatic failover, periodic environment restart for stability, and episode trajectory recording and visualization.
+OpenGUI-RL is a scalable online RL infrastructure for GUI agent training. It supports parallel training across dozens of virtual Android environments (via Docker-based MobileWorld) and real-device training on physical or cloud phones. Includes GiGPO with PRM for fine-grained step-level reward, spare-server rotation for automatic failover, periodic environment restart for stability, and episode trajectory recording and visualization.
 
-```bash
-cd opengui-rl
+<div align="center">
+<img src="opengui-rl/assets/opengui-rl-framework.png" width="75%" alt="OpenGUI-RL Architecture">
+</div>
 
-conda create -n opengui-rl python=3.12 -y
-conda activate opengui-rl
-pip3 install vllm==0.11.0
-pip3 install flash-attn==2.7.4.post1 --no-build-isolation --no-cache-dir
-pip install -e .
-pip install swanlab
-
-# Set up OpenGUI-Server (virtual environments)
-# git clone https://github.com/sugarandgugu/OpenGUI-Server.git
-# Fill in examples/env_server/mobileworld_server.txt with container URLs
-
-# Download geometry3k dataset
-huggingface-cli download hiyouga/geometry3k --repo-type dataset --local-dir ~/data/geometry3k
-
-# Launch training (GRPO)
-bash examples/grpo_trainer/run_mobileworld.sh
-
-# Or GiGPO (recommended, uses PRM for better results)
-bash examples/gigpo_trainer/run_mobileworld.sh
-```
-
-> For real-device training, parameter details, and model conversion to HuggingFace format, see [`opengui-rl/README.md`](opengui-rl/README.md).
+→ **[Get started with OpenGUI-RL](opengui-rl/README.md)**
 
 ---
 
