@@ -1,9 +1,19 @@
 """Abstract base class for all model inferencers."""
 
+import importlib.util
 import time
 from abc import ABC, abstractmethod
 from typing import Dict, Any
 from PIL import Image
+
+
+def _best_attn_implementation() -> str:
+    if importlib.util.find_spec("flash_attn") is not None:
+        print("Using flash_attention_2")
+        return "flash_attention_2"
+    else:
+        print("Using sdpa")
+    return "sdpa"
 
 
 class BaseInferencer(ABC):

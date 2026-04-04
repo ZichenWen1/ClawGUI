@@ -18,6 +18,7 @@
 - [快速开始](#-快速开始)
 - [配置](#-配置)
 - [运行](#-运行)
+- [OpenGUI-Eval 评测](#-opengui-eval-评测)
 - [Web UI](#-web-ui)
 - [记忆系统](#-记忆系统)
 - [支持的模型](#-支持的模型)
@@ -29,6 +30,8 @@
 💬 **nanobot 集成** — 通过飞书 / 钉钉 / Telegram / Discord / Slack / QQ 等 12+ 聊天平台远程控制手机，随时随地下发任务
 
 📱 **OpenClaw 手机操控** — 基于 OpenClaw 能力，AI 自主截屏、理解屏幕、执行点击/滑动/输入等 GUI 操作，完成复杂任务
+
+📊 **OpenGUI-Eval 评测集成** — 内置 [opengui-eval](../opengui-eval) 评测技能，用自然语言一句话即可启动 GUI Grounding 模型评测（环境检测 → 多 GPU 推理 → 判分 → 指标计算），自动监控进度并汇报结果与官方基线对比
 
 🧠 **多模型适配** — 支持 AutoGLM、Qwen VL、UI-TARS、MAI-UI、GUI-Owl 等多种 VLM，通过 OpenAI 兼容 API 接入
 
@@ -137,7 +140,7 @@ adb shell ime enable com.android.adbkeyboard/.AdbIME
 {
   "agents": {
     "defaults": {
-      "workspace": "~/.nanobot/workspace",
+      "workspace": "/path/to/OpenGUI",
       "model": "glm-5",
       "provider": "zhipu",
       "maxTokens": 8192,
@@ -178,6 +181,12 @@ adb shell ime enable com.android.adbkeyboard/.AdbIME
   }
 }
 ```
+
+> **重要：`workspace` 路径设置**
+>
+> 请将 `workspace` 设置为 OpenGUI 项目的根目录（即包含 `openclaw-gui/` 和 `opengui-eval/` 的目录）。这样 nanobot 内置的评测技能（opengui-eval）才能正确定位评测框架。例如，如果你的项目在 `/home/user/OpenGUI`，则设置为 `"/home/user/OpenGUI"`。
+>
+> nanobot 会在该目录下创建 `memory/`、`AGENTS.md` 等运行时文件，这些文件已在 `.gitignore` 中排除。
 
 #### GUI 工具参数说明
 
@@ -223,6 +232,53 @@ nanobot gateway
 ```
 
 nanobot 会调用 `gui_execute` 工具，自动截屏 → VLM 推理 → 执行手机操作，循环直到任务完成。
+
+## 📊 OpenGUI-Eval 评测
+
+OpenClaw-GUI 内置了 [opengui-eval](../opengui-eval) 评测技能，可以用自然语言指令驱动 GUI Grounding 模型的标准化评测。
+
+### 前置条件
+
+1. **workspace 已正确设置**：`config.json` 中的 `workspace` 指向 OpenGUI 根目录（见上方配置说明）
+2. **opengui-eval 已安装**：参考 [opengui-eval README](../opengui-eval/README_zh.md) 完成安装和数据下载
+3. **GPU 可用**：推理需要 NVIDIA GPU
+4. **（推荐）安装 FlashAttention-2**：`pip install flash-attn --no-build-isolation`，未安装时框架会自动降级为 SDPA，但精度可能略有下降
+
+### 使用方式
+
+在 nanobot 对话中直接说即可，例如：
+
+```
+帮我测一下 qwen3vl 2b 模型在 screenspot-pro 上的指标
+```
+
+```
+用 MAI-UI-8B 跑一下 uivision 和 osworld-g 的评测
+```
+
+nanobot 会自动完成以下流程：
+
+1. **环境检测** — 检查 GPU、CUDA、FlashAttention-2、数据完整性
+2. **推理** — 基于模板脚本生成运行脚本，后台启动多 GPU 并行推理，实时监控进度
+3. **判分** — 自动选择对应的 judge 脚本执行
+4. **指标计算** — 自动选择对应的 metric 脚本执行
+5. **结果汇报** — 展示准确率、分项指标，并与官方基线对比
+
+### 支持的评测模型
+
+| 模型类型 | 示例 HuggingFace ID |
+|---------|-------------------|
+| `qwen3vl` | Qwen/Qwen3-VL-2B/4B/8B-Instruct |
+| `qwen25vl` | Qwen/Qwen2.5-VL-3B/7B-Instruct |
+| `maiui` | Tongyi-MAI/MAI-UI-2B/8B |
+| `uitars` | ByteDance-Seed/UI-TARS-1.5-7B |
+| `uivenus15` | inclusionAI/UI-Venus-1.5-2B/8B |
+| `guiowl15` | mPLUG/GUI-Owl-1.5-2B/4B/8B-Instruct |
+| `guig2` | inclusionAI/GUI-G2-7B |
+| `stepgui` | stepfun-ai/GELab-Zero-4B-preview |
+| `uivenus` | inclusionAI/UI-Venus-Ground-7B |
+
+支持的 Benchmark：ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
 
 ## 🖥️ Web UI
 

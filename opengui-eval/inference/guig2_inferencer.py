@@ -8,7 +8,7 @@ import base64
 from io import BytesIO
 from PIL import Image
 from typing import Any
-from .base_inferencer import BaseInferencer
+from .base_inferencer import BaseInferencer, _best_attn_implementation
 
 
 class GUIG2Inferencer(BaseInferencer):
@@ -29,7 +29,7 @@ class GUIG2Inferencer(BaseInferencer):
                 self.model_path,
                 dtype=torch.bfloat16,
                 device_map="cuda",
-                attn_implementation="flash_attention_2",
+                attn_implementation=_best_attn_implementation(),
                 trust_remote_code=True
             )
             self.processor = AutoProcessor.from_pretrained(

@@ -2,13 +2,13 @@
 # ======================
 # Experiment Configuration
 # ======================
-EXP_NAME="uivenus-exp"
+EXP_NAME="qwen25vl-7b-exp1"
 
 # ======================
 # Model Configuration
 # ======================
 # options: maiui qwen3vl qwen25vl uitars stepgui uivenus uivenus15 guiowl15 guig2
-MODEL_TYPE="uivenus"
+MODEL_TYPE="qwen25vl"
 
 # Whether to include refusal samples in the accuracy denominator.
 # ""                = exclude (reported separately)
