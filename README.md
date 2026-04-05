@@ -1,9 +1,6 @@
 <div align="center">
 
-<table style="border:none;border-collapse:collapse;"><tr>
-<td style="border:none;padding:0;"><img src="assets/OpenGUI-Logo.png" height="80" alt="OpenGUI Logo"></td>
-<td style="border:none;padding:0 0 0 14px;vertical-align:middle;"><h1 style="margin:0;">OpenGUI: A Unified GUI Agent Harness</h1></td>
-</tr></table>
+<img src="assets/OpenGUI-Logo.png" height="80" alt="OpenGUI Logo" style="vertical-align:middle;margin-right:12px;"><span style="font-size:2em;font-weight:bold;vertical-align:middle;">OpenGUI: A Unified GUI Agent Harness</span>
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
