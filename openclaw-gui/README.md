@@ -109,6 +109,8 @@ nanobot onboard
 
 Then edit `~/.nanobot/config.json`. Here is a reference configuration:
 
+> We recommend using **autoglm-phone** as the external GUI model for phone control.
+
 ```json
 {
   "agents": {
@@ -141,7 +143,7 @@ Then edit `~/.nanobot/config.json`. Here is a reference configuration:
       "useExternalModel": true,
       "guiBaseUrl": "https://openrouter.ai/api/v1",
       "guiApiKey": "YOUR_OPENROUTER_API_KEY",
-      "guiModelName": "qwen/qwen3.5-35b-a3b",
+      "guiModelName": "autoglm-phone",
       "promptTemplateLang": "en",
       "promptTemplateStyle": "autoglm",
       "traceEnabled": false,
@@ -352,6 +354,18 @@ Supported Benchmarks: ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWo
 ## 📱 GUI Phone Control
 
 The following features are part of OpenClaw-GUI's phone/device control capabilities, driven by the `gui_execute` tool.
+
+You can also invoke the GUI agent directly via command line:
+
+```bash
+python main.py \
+  --base-url https://open.bigmodel.cn/api/paas/v4/ \
+  --model autoglm-phone \
+  --apikey <YOUR_API_KEY> \
+  --max-steps 100 \
+  --lang cn \
+  "Open QQ Music, play Justin Bieber's Baby and add it to favorites. If it is already favorited, just play it. After it starts playing, pause it, then go back and play Bieber's Love Me."
+```
 
 ### Web UI
 

@@ -109,6 +109,8 @@ nanobot onboard
 
 然后编辑 `~/.nanobot/config.json`，以下是一份参考配置：
 
+> 我们推荐使用 **autoglm-phone** 作为外部的 GUI 模型进行手机操控调用。
+
 ```json
 {
   "agents": {
@@ -357,6 +359,18 @@ nanobot 会自动完成以下流程：
 ## 📱 GUI 手机操控能力
 
 以下功能均属于 OpenClaw-GUI 的手机/设备操控能力，通过 `gui_execute` 工具驱动。
+
+你也可以通过以下方式直接通过命令行调用 GUI Agent：
+
+```bash
+python main.py \
+  --base-url https://open.bigmodel.cn/api/paas/v4/ \
+  --model autoglm-phone \
+  --apikey <YOUR_API_KEY> \
+  --max-steps 100 \
+  --lang cn \
+  "Open QQ Music, play Justin Bieber's Baby and add it to favorites. If it is already favorited, just play it. After it starts playing, pause it, then go back and play Bieber's Love Me."
+```
 
 ### Web UI
 
