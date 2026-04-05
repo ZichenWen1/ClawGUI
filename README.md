@@ -1,4 +1,6 @@
-<img src="assets/OpenGUI-Logo.png" height="60" alt="OpenGUI Logo" align="left">
+<div align="center">
+
+<img src="assets/OpenGUI-Logo.png" height="100" alt="OpenGUI Logo">
 
 # OpenGUI: A Unified GUI Agent Harness
 
@@ -9,6 +11,8 @@
 [![ModelScope Model](https://img.shields.io/badge/🤖%20ModelScope-OpenGUI--2B-purple.svg)](https://modelscope.cn/)
 
 [English](README.md) | [中文](README_zh.md)
+
+</div>
 
 ---
 
