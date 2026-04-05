@@ -15,7 +15,7 @@
   </p>
 </div>
 
-[English](README_EN.md) | [中文](README.md)
+[English](README.md) | [中文](README_CN.md)
 
 ---
 
@@ -34,19 +34,19 @@
 
 ## ✨ Key Features
 
-💬 **nanobot Integration** — Remotely control phones from 12+ chat platforms including Feishu / DingTalk / Telegram / Discord / Slack / QQ, issue tasks anytime anywhere
+- 💬 **nanobot Integration** — Remotely control phones from 12+ chat platforms including Feishu / DingTalk / Telegram / Discord / Slack / QQ, issue tasks anytime anywhere
 
-📱 **OpenClaw-GUI Phone Control** — Powered by OpenClaw, AI autonomously captures screenshots, understands the screen, and performs tap/swipe/type GUI actions to complete complex tasks
+- 📱 **OpenClaw-GUI Phone Control** — Powered by OpenClaw, AI autonomously captures screenshots, understands the screen, and performs tap/swipe/type GUI actions to complete complex tasks
 
-📊 **OpenGUI-Eval Evaluation Integration** — Built-in [opengui-eval](../opengui-eval) evaluation skill, launch GUI Grounding model benchmarks with natural language (environment check → multi-GPU inference → judging → metric calculation), with automatic progress monitoring and result comparison against official baselines
+- 📊 **OpenGUI-Eval Evaluation Integration** — Built-in [opengui-eval](../opengui-eval) evaluation skill, launch GUI Grounding model benchmarks with natural language (environment check → multi-GPU inference → judging → metric calculation), with automatic progress monitoring and result comparison against official baselines
 
-🧠 **Multi-Model Support** — Compatible with AutoGLM, Qwen VL, UI-TARS, MAI-UI, GUI-Owl and more VLMs, connected via OpenAI-compatible API
+- 🧠 **Multi-Model Support** — Compatible with AutoGLM, Qwen VL, UI-TARS, MAI-UI, GUI-Owl and more VLMs, connected via OpenAI-compatible API
 
-💾 **Personalized Memory** — Automatically learns user preferences (contacts, frequently used apps, habits), with a vector-search-based persistent memory system
+- 💾 **Personalized Memory** — Automatically learns user preferences (contacts, frequently used apps, habits), with a vector-search-based persistent memory system
 
-📝 **Real-time Episode Recording** — Each task execution (screenshots + model outputs + actions) is saved as a structured episode, enabling replay and dataset construction
+- 📝 **Real-time Episode Recording** — Each task execution (screenshots + model outputs + actions) is saved as a structured episode, enabling replay and dataset construction
 
-🖥️ **Web UI** — Gradio-based web interface for device management, task execution visualization, manual takeover, memory management and more
+- 🖥️ **Web UI** — Gradio-based web interface for device management, task execution visualization, manual takeover, memory management and more
 
 ## 🏗️ Architecture
 

@@ -34,19 +34,19 @@
 
 ## ✨ 核心特性
 
-💬 **nanobot 集成** — 通过飞书 / 钉钉 / Telegram / Discord / Slack / QQ 等 12+ 聊天平台远程控制手机，随时随地下发任务
+- 💬 **nanobot 集成** — 通过飞书 / 钉钉 / Telegram / Discord / Slack / QQ 等 12+ 聊天平台远程控制手机，随时随地下发任务
 
-📱 **OpenClaw-GUI 手机操控** — 基于 OpenClaw 能力，AI 自主截屏、理解屏幕、执行点击/滑动/输入等 GUI 操作，完成复杂任务
+- 📱 **OpenClaw-GUI 手机操控** — 基于 OpenClaw 能力，AI 自主截屏、理解屏幕、执行点击/滑动/输入等 GUI 操作，完成复杂任务
 
-📊 **OpenGUI-Eval 评测集成** — 内置 [opengui-eval](../opengui-eval) 评测技能，用自然语言一句话即可启动 GUI Grounding 模型评测（环境检测 → 多 GPU 推理 → 判分 → 指标计算），自动监控进度并汇报结果与官方基线对比
+- 📊 **OpenGUI-Eval 评测集成** — 内置 [opengui-eval](../opengui-eval) 评测技能，用自然语言一句话即可启动 GUI Grounding 模型评测（环境检测 → 多 GPU 推理 → 判分 → 指标计算），自动监控进度并汇报结果与官方基线对比
 
-🧠 **多模型适配** — 支持 AutoGLM、Qwen VL、UI-TARS、MAI-UI、GUI-Owl 等多种 VLM，通过 OpenAI 兼容 API 接入
+- 🧠 **多模型适配** — 支持 AutoGLM、Qwen VL、UI-TARS、MAI-UI、GUI-Owl 等多种 VLM，通过 OpenAI 兼容 API 接入
 
-💾 **个性化记忆** — 自动学习用户偏好（联系人、常用 App、习惯），基于向量搜索的持久化记忆系统
+- 💾 **个性化记忆** — 自动学习用户偏好（联系人、常用 App、习惯），基于向量搜索的持久化记忆系统
 
-📝 **Episode 实时记录** — 每次任务执行过程（截图 + 模型输出 + 动作）以结构化 episode 形式保存，便于回放与数据集构建
+- 📝 **Episode 实时记录** — 每次任务执行过程（截图 + 模型输出 + 动作）以结构化 episode 形式保存，便于回放与数据集构建
 
-🖥️ **Web UI** — 提供 Gradio Web 界面，支持设备管理、任务执行可视化、手动接管、记忆管理等
+- 🖥️ **Web UI** — 提供 Gradio Web 界面，支持设备管理、任务执行可视化、手动接管、记忆管理等
 
 ## 🏗️ 架构
 
