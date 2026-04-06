@@ -15,6 +15,29 @@
 
 ---
 
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<video src="https://github.com/user-attachments/assets/6481f7ba-58f2-4f4b-9e97-e81b7b64a027" controls width="320"></video>
+<br><b>OpenClaw-GUI Demo 1</b>
+</td>
+<td align="center">
+<video src="https://github.com/user-attachments/assets/5fbf2064-52d5-47a3-9fca-f1ecf28e08f8" controls width="320"></video>
+<br><b>OpenClaw-GUI Demo 2</b>
+</td>
+</tr>
+<tr>
+<td align="center" colspan="2">
+<video src="https://github.com/user-attachments/assets/277db5ce-717a-4df4-ae6b-b4697298aaaa" controls width="320"></video>
+<br><b>OpenGUI-Eval Demo</b>
+</td>
+</tr>
+</table>
+</div>
+
+---
+
 ## 📚 Table of Contents
 
 - [Overview](#-overview)
