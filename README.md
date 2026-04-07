@@ -175,6 +175,10 @@ ClawGUI-Agent closes the loop from training to production. Built on OpenClaw and
 
 We welcome contributions of all kinds — new model support, new RL environments, bug fixes, and documentation improvements. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get started, module-specific guidelines, and PR requirements.
 
+<a href="https://github.com/ZJU-REAL/ClawGUI/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ZJU-REAL/ClawGUI" />
+</a>
+
 ---
 
 ## 🙏 Acknowledgements
