@@ -38,14 +38,14 @@
 
 **ClawGUI-Eval** 是 [ClawGUI](../README_zh.md) 的评测模块——衡量智能体学到了什么的地方。它提供标准化的 GUI Grounding 模型评测框架，采用 **Infer → Judge → Metric** 三阶段流水线，评估模型根据自然语言指令定位 UI 元素的准确性。
 
-✨ **核心特性：**
+**核心特性：**
 - **双后端支持** — 本地 GPU 推理（`transformers`）或远程 API 调用（OpenAI 兼容接口）
 - **6 大 Benchmark** — ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
 - **11+ 模型** — Qwen3-VL、Qwen2.5-VL、UI-TARS、MAI-UI、GUI-G2、UI-Venus、Gemini、Seed 1.8 等
-- **多 GPU & 多线程** — 并行推理，支持断点续推
-- **易于扩展** — 继承基类即可添加新模型
+- **多 GPU & 多线程** — 通过 Python `multiprocessing` 启动 `NUM_GPUS` 个进程，每个进程通过 `CUDA_VISIBLE_DEVICES` 绑定一个 GPU。数据分片自动拆分与合并；中断后从最后完成的分片处续跑
+- **易于扩展** — 继承基类即可添加新模型；共享架构的模型（如 UI-TARS 继承 Qwen2.5-VL）复用父类的模型加载，只需覆盖 Prompt 构建和输出解析
 - **忠实复现** — 提供详细的官方 vs. 复现结果对比（[查看详情](#-复现结果)）
-- **前沿模型评测** — 成功复现 Gemini 3.0 Pro 和 Seed 1.8 在 ScreenSpot-Pro 上的官方结果，并新增 Gemini 3.1 Pro 评测
+- **前沿模型评测** — 通过 **Zoom 范式**（两阶段裁剪后定位：Gemini 使用 25% 裁剪块，Seed 使用 50% 裁剪块）成功复现 Gemini 3.0 Pro 和 Seed 1.8 在 ScreenSpot-Pro 上的官方结果，并新增 Gemini 3.1 Pro 评测
 - **ClawGUI-Agent 集成** — 搭配 [ClawGUI-Agent](../clawgui-agent) 使用，一句自然语言即可启动完整评测流程（环境检测 → 推理 → 判分 → 指标）。详见 [ClawGUI-Agent README](../clawgui-agent/README_CN.md#-clawgui-eval-评测)
 
 ---

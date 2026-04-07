@@ -25,6 +25,7 @@
 
 - [核心特性](#-核心特性)
 - [架构](#️-架构)
+- [智能体工作原理](#-智能体工作原理)
 - [快速开始](#-快速开始)
   - [环境要求](#环境要求)
   - [1. 安装](#1-安装)
@@ -55,6 +56,22 @@
 <p align="center">
   <img src="assets/clawgui-agent-logo.png" alt="ClawGUI-Agent Architecture" width="800">
 </p>
+
+## 🔄 智能体工作原理
+
+了解执行循环有助于配置与调试。`phone_agent/agent.py` 中的 `PhoneAgent.run()` 对每个任务执行以下闭环：
+
+1. **截图** — 通过 ADB（`screencap`）、HDC 或 XCTest 捕获当前屏幕，具体取决于设备后端。
+2. **记忆检索** — 在向量记忆库中检索与当前任务相关的历史记忆（联系人、App 知识、用户偏好）。最相关的 top-k 条记忆追加至系统 Context。
+3. **历史构建** — 组装多轮对话历史：每个历史步骤贡献一个 `(用户: 截图+指令, 助手: 推理+动作)` 对，最多回溯 `history_length` 步。
+4. **VLM 调用** — 将提示词（System Prompt + 历史 + 当前截图 + 任务指令）通过 OpenAI 兼容 API 发送给已配置的 GUI 模型。
+5. **动作解析** — 从模型输出中提取结构化动作。不同模型使用不同的输出格式（`phone_agent/model/adapters.py` 中的 `autoglm`、`uitars`、`qwenvl`、`maiui`、`guiowl` 适配器）。
+6. **坐标归一化** — 将模型输出的坐标转换为设备绝对像素坐标。AutoGLM 使用 `[0, 1000]` 归一化坐标；UI-TARS 使用 `smart_resize` 空间中的绝对像素坐标；Qwen-VL 使用绝对像素；MAI-UI 使用 `[0, 1000]`。
+7. **动作执行** — 向设备后端发送动作：点击、长按、滑动、输入、Home、返回或任务完成。每种动作类型在 `phone_agent/actions/` 中有专属处理器。
+8. **轨迹记录** — 若 `traceEnabled=True`，将截图、推理过程和动作追加至 Episode Tracer，便于后续回放或训练数据导出。
+9. **记忆更新** — 任务完成后，从对话中提取联系人姓名、App 知识和用户习惯，以去重方式写入向量记忆库。
+
+该循环持续运行，直到模型输出 `terminate` 或 `answer` 动作，或达到 `max_steps` 上限。
 
 ## 🚀 快速开始
 
@@ -279,7 +296,7 @@ adb shell ime enable com.android.adbkeyboard/.AdbIME
 }
 ```
 
-> `allowFrom` 设为 `["*"]` 表示允许所有用户。如需限制，填入用户的 Open ID 列表。`groupPolicy` 设为 `"mention"` 表示在群聊中需 @机器人 才会响应。
+> `allowFrom` 设为 `[\"*\"]` 表示允许所有用户。如需限制，填入用户的 Open ID 列表。`groupPolicy` 设为 `"mention"` 表示在群聊中需 @机器人 才会响应。
 
 #### QQ
 
@@ -401,7 +418,7 @@ python webui.py
 
 ### 记忆系统
 
-框架内置个性化记忆系统，在每次任务完成后自动从对话中提取有价值的信息（联系人、App 偏好、用户习惯等），以 JSON + numpy 向量嵌入的形式持久化存储。下次执行相似任务时，相关记忆会自动注入上下文，实现更智能的个性化操作。支持多用户隔离。
+框架内置个性化记忆系统（`phone_agent/memory/`）。每次任务完成后，智能体自动从对话中提取结构化事实——联系人姓名与关系、App 专属知识、用户习惯与偏好——以 JSON 记录 + numpy 向量嵌入的形式持久化存储。执行后续任务时，语义最相关的 top-k 条记忆被检索出来并注入 System Context，让智能体认识"张三是用户的同事"，或知道用户偏好哪个音乐 App。重复记忆会被检测并合并而非累积，保持记忆库精简。支持多用户命名空间隔离。
 
 ### 支持的 GUI 模型
 
@@ -430,17 +447,17 @@ ClawGUI-Agent/
 ├── requirements.txt             # Python 依赖
 │
 ├── phone_agent/                 # 核心手机自动化包
-│   ├── agent.py                 # PhoneAgent 主类
+│   ├── agent.py                 # PhoneAgent 主类（截图→VLM→动作闭环）
 │   ├── agent_ios.py             # IOSPhoneAgent 类
-│   ├── device_factory.py        # 设备类型工厂
+│   ├── device_factory.py        # 设备类型工厂（ADB / HDC / XCTest）
 │   ├── tracer.py                # Episode 执行追踪器
-│   ├── config/                  # 配置与提示词
-│   ├── model/                   # 模型客户端与适配器
+│   ├── config/                  # 配置与提示词（8 个模板文件）
+│   ├── model/                   # 模型客户端与适配器（5 个 VLM 适配器）
 │   ├── adb/                     # Android ADB 设备控制
 │   ├── hdc/                     # 鸿蒙 HDC 设备控制
 │   ├── xctest/                  # iOS XCTest 设备控制
-│   ├── actions/                 # 动作处理器
-│   └── memory/                  # 个性化记忆系统
+│   ├── actions/                 # 动作处理器（点击、滑动、输入等）
+│   └── memory/                  # 个性化记忆系统（向量存储）
 │
 ├── nanobot/                     # nanobot 子项目
 │   ├── nanobot/                 # nanobot 核心包

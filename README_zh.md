@@ -137,7 +137,7 @@ ClawGUI-Eval 为 GUI Grounding 研究提供可靠的测量基准。**推理 → 
 
 ### 🤖 ClawGUI-Agent — 部署
 
-> 📁 [`clawgui-agent/`](clawgui-agent/) · 📖 [完整文档](clawgui-agent/README.md) · [English](clawgui-agent/README_EN.md)
+> 📁 [`clawgui-agent/`](clawgui-agent/) · 📖 [完整文档](clawgui-agent/README_CN.md) · [English](clawgui-agent/README.md)
 
 ClawGUI-Agent 打通从训练到生产的最后一环。基于 OpenClaw 构建，由 nanobot 驱动，可通过 12+ 聊天平台以自然语言控制 Android、鸿蒙或 iOS 设备，也可一句话触发完整的 ClawGUI-Eval 评测流程，无需手写脚本。
 

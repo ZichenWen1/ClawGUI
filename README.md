@@ -137,7 +137,7 @@ ClawGUI-Eval gives GUI grounding research a reliable measurement baseline. Its t
 
 ### 🤖 ClawGUI-Agent — Deploy
 
-> 📁 [`clawgui-agent/`](clawgui-agent/) · 📖 [Full Documentation](clawgui-agent/README.md) · [English](clawgui-agent/README_EN.md)
+> 📁 [`clawgui-agent/`](clawgui-agent/) · 📖 [Full Documentation](clawgui-agent/README.md) · [中文](clawgui-agent/README_CN.md)
 
 ClawGUI-Agent closes the loop from training to production. Built on OpenClaw and powered by nanobot, it lets you control Android, HarmonyOS, or iOS devices with natural language from 12+ chat platforms — and trigger the full ClawGUI-Eval benchmark pipeline with a single sentence, no scripts required.
 

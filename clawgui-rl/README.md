@@ -18,10 +18,13 @@
 
 - [Overview](#-overview)
 - [Architecture](#️-architecture)
+- [GiGPO Algorithm](#-gigpo-algorithm)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
   - [Virtual Environment Scaling](#1-virtual-environment-scaling)
   - [Real Device Training](#2-real-device-training)
+  - [Convert Checkpoint to HuggingFace Format](#3-convert-checkpoint-to-huggingface-format)
+  - [Visualize Episode Trajectories](#4-visualize-episode-trajectories)
 - [How to Add a New Environment](#-how-to-add-a-new-environment)
 - [Experimental Results](#-experimental-results)
 - [Acknowledgements](#-acknowledgements)
@@ -34,10 +37,11 @@
 
 **Key Features:**
 
-- **GiGPO algorithm** — Replaces standard GRPO with GiGPO+PRM for fine-grained step-level scoring, yielding stronger policy optimization on GUI tasks.
+- **GiGPO algorithm** — Replaces standard GRPO with GiGPO+PRM for fine-grained step-level scoring via anchor-state grouping, yielding stronger policy optimization on GUI tasks.
 - **Parallel multi-environment training** — Runs dozens of Docker-based virtual Android environments simultaneously for fast, scalable data collection.
 - **Real-device training support** — Trains directly on physical Android devices (or cloud phones) using the same API as virtual environments.
 - **Multi-model support** — Out-of-the-box support for [MAI-UI](https://github.com/sugarandgugu/MAI-UI) and [GUI-Owl](https://github.com/sugarandgugu/GUI-Owl), with an extensible interface for other VLMs (e.g., Qwen3-VL family).
+- **Dynamic sampling** — DAPO-style filtering discards trivial samples (all-correct or all-wrong groups) before backpropagation, keeping gradients informative throughout training.
 - **Pluggable custom context** — Inject custom history, screenshots, or action spaces into the agent's observation without touching core training logic.
 - **Environment restart & retry mechanisms** — Periodic container restarts and configurable retry logic keep long training runs stable without manual intervention.
 - **Spare server rotation** — Automatically rotates across backend server URLs so a single unhealthy container never stalls training.
@@ -54,6 +58,31 @@
 <div align="center">
 <img src="assets/reward_curve.png" width="80%" alt="ClawGUI-2B Training Reward Curve">
 </div>
+
+ClawGUI-RL is built on [verl](https://github.com/volcengine/verl) with a **Ray single-controller + FSDP** distributed training architecture:
+
+- **Ray single-controller** — A single Python process orchestrates rollout workers, training workers, and environment workers. All coordination is explicit and inspectable.
+- **FSDP training workers** — Model parameters are sharded across GPUs for memory efficiency.
+- **Hybrid vLLM engine** — vLLM handles token generation during rollout; training weights are synced back via `broadcast_from_vllm()` after each gradient step.
+- **Multi-turn rollout loop** — Each episode is a multi-step conversation: the agent receives a screenshot, reasons, outputs an action (tap/swipe/type/terminate), and receives the next screenshot until termination or `max_steps`.
+
+---
+
+## 🧬 GiGPO Algorithm
+
+Standard GRPO assigns a single advantage score to an entire episode, which gives no credit signal to intermediate steps. ClawGUI-RL replaces GRPO with **GiGPO** (Group-in-Group Policy Optimization), which estimates per-step advantages without a learned critic.
+
+GiGPO works in three stages:
+
+**Stage 1 — Episode-level advantage.** Group all rollouts by their task prompt (same UID). Within each group, normalize episode returns using the group mean and standard deviation. This is equivalent to standard GRPO and provides a coarse signal about whether the overall episode succeeded.
+
+**Stage 2 — Anchor-state grouping.** Within each episode group, cluster steps that reach the same intermediate state (identified by matching screenshot hash or action prefix). Steps sharing an anchor state form a sub-group — they faced identical observations and had their futures compared under identical conditions.
+
+**Stage 3 — Step-level advantage.** Within each anchor-state sub-group, apply discounted return normalization. A step that leads to a higher discounted return than its peers in the same sub-group receives a positive advantage; a step that leads to a dead end receives a negative advantage. This gives dense per-step credit without training a separate value network.
+
+The final advantage for each token is a blend of episode-level and step-level signals, weighted by a hyperparameter `λ`.
+
+**PRM integration.** When `step_reward_judge=True`, a VLM-as-judge (the Process Reward Model) evaluates each intermediate step independently: given the screenshot before and after the action, it produces a score ∈ {0, 1}. This score augments the environment reward at each step, giving the optimizer a denser training signal than the sparse binary episode-success reward alone.
 
 ---
 

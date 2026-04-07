@@ -42,10 +42,10 @@
 - **Dual backend support** — Local GPU via `transformers` or remote API via OpenAI-compatible endpoints
 - **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
 - **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
-- **Multi-GPU & multi-thread** — Parallel inference with automatic resume
-- **Easily extensible** — Add new models by inheriting a simple base class
+- **Multi-GPU & multi-thread** — `NUM_GPUS` processes launched via Python `multiprocessing`, each pinned to one GPU via `CUDA_VISIBLE_DEVICES`. Shard files are automatically split and merged; interrupted runs resume from the last completed shard.
+- **Easily extensible** — Add new models by inheriting a simple base class; shared architectures (e.g. UI-TARS extends Qwen2.5-VL) reuse parent model loading and only override prompt building and output parsing
 - **Faithful reproduction** — Comprehensive reproduction results with detailed official vs. reproduced comparisons ([see details](#-reproduction-results))
-- **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro, and added Gemini 3.1 Pro evaluation
+- **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro using a **Zoom paradigm** (2-stage crop-then-ground: Gemini uses 25% crop tiles, Seed uses 50% crop tiles), and added Gemini 3.1 Pro evaluation
 - **ClawGUI-Agent integration** — Pair with [ClawGUI-Agent](../clawgui-agent) to launch the full evaluation pipeline with a single natural language command (env check → inference → judging → metrics). See [ClawGUI-Agent README](../clawgui-agent/README.md#-clawgui-eval-evaluation) for setup details
 
 ---

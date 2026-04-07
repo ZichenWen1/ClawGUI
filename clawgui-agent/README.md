@@ -25,6 +25,7 @@
 
 - [Key Features](#-key-features)
 - [Architecture](#️-architecture)
+- [How the Agent Works](#-how-the-agent-works)
 - [Quick Start](#-quick-start)
   - [Requirements](#requirements)
   - [1. Installation](#1-installation)
@@ -55,6 +56,22 @@
 <p align="center">
   <img src="assets/clawgui-agent-logo.png" alt="ClawGUI-Agent Architecture" width="800">
 </p>
+
+## 🔄 How the Agent Works
+
+Understanding the execution loop helps with configuration and debugging. `PhoneAgent.run()` in `phone_agent/agent.py` follows this cycle for each task:
+
+1. **Screenshot** — Capture the current screen via ADB (`screencap`), HDC, or XCTest depending on the device backend.
+2. **Memory retrieval** — Query the vector memory store for relevant memories from past interactions (contacts, app knowledge, user preferences). Top-k similar memories are appended to the system context.
+3. **History construction** — Assemble the multi-turn conversation history: each past step contributes a `(user: screenshot + instruction, assistant: reasoning + action)` pair, up to `history_length` steps back.
+4. **VLM call** — Send the prompt (system prompt + history + current screenshot + task instruction) to the configured GUI model via OpenAI-compatible API.
+5. **Action parsing** — Extract the structured action from the model output. Different models use different output formats (`autoglm`, `uitars`, `qwenvl`, `maiui`, `guiowl` adapters in `phone_agent/model/adapters.py`).
+6. **Coordinate normalization** — Convert the model's output coordinates to absolute device pixels. AutoGLM uses `[0, 1000]` normalized coordinates; UI-TARS uses absolute pixel coordinates in `smart_resize` space; Qwen-VL uses absolute pixels; MAI-UI uses `[0, 1000]`.
+7. **Action execution** — Send the action to the device backend: tap, long-press, swipe, type, home, back, or task-complete. Each action type has a dedicated handler in `phone_agent/actions/`.
+8. **Trace recording** — If `traceEnabled=True`, append the screenshot, reasoning, and action to the episode tracer for later replay or training data export.
+9. **Memory update** — After task completion, extract contact names, app knowledge, and user habits from the conversation and upsert them into the vector store with deduplication.
+
+This loop runs until the model outputs a `terminate` or `answer` action, or `max_steps` is reached.
 
 ## 🚀 Quick Start
 
@@ -401,7 +418,7 @@ Opens at `http://localhost:7860` by default, featuring:
 
 ### Memory System
 
-The framework includes a built-in personalized memory system that automatically extracts valuable information from conversations after each task (contacts, app preferences, user habits), stored persistently as JSON + numpy vector embeddings. On subsequent similar tasks, relevant memories are automatically injected into context for smarter personalized operations. Multi-user isolation is supported.
+The framework includes a built-in personalized memory system (`phone_agent/memory/`). After each completed task, the agent extracts structured facts from the conversation — contact names and relationships, app-specific knowledge, user habits and preferences — and upserts them into a persistent store as JSON records with numpy vector embeddings. On subsequent tasks, the top-k most semantically similar memories are retrieved and injected into the system context, letting the agent recognize "Zhang San" as the user's colleague or know which music app the user prefers. Duplicate memories are detected and merged rather than accumulated, keeping the store lean. Multi-user isolation is supported via per-user namespaces.
 
 ### Supported GUI Models
 
@@ -430,17 +447,17 @@ ClawGUI-Agent/
 ├── requirements.txt             # Python dependencies
 │
 ├── phone_agent/                 # Core phone automation package
-│   ├── agent.py                 # PhoneAgent main class
+│   ├── agent.py                 # PhoneAgent main class (screenshot→VLM→action loop)
 │   ├── agent_ios.py             # IOSPhoneAgent class
-│   ├── device_factory.py        # Device type factory
+│   ├── device_factory.py        # Device type factory (ADB / HDC / XCTest)
 │   ├── tracer.py                # Episode execution tracer
-│   ├── config/                  # Configuration & prompts
-│   ├── model/                   # Model clients & adapters
+│   ├── config/                  # Configuration & prompts (8 template files)
+│   ├── model/                   # Model clients & adapters (5 VLM adapters)
 │   ├── adb/                     # Android ADB device control
 │   ├── hdc/                     # HarmonyOS HDC device control
 │   ├── xctest/                  # iOS XCTest device control
-│   ├── actions/                 # Action handlers
-│   └── memory/                  # Personalized memory system
+│   ├── actions/                 # Action handlers (tap, swipe, type, etc.)
+│   └── memory/                  # Personalized memory system (vector store)
 │
 ├── nanobot/                     # nanobot subproject
 │   ├── nanobot/                 # nanobot core package
