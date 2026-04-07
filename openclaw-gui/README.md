@@ -184,6 +184,8 @@ Then edit `~/.nanobot/config.json`. Here is a reference configuration:
 
 #### Step 1: Install ADB
 
+**Option A: Install via package manager**
+
 **macOS (recommended: brew):**
 
 ```bash
@@ -194,10 +196,22 @@ brew install android-platform-tools
 
 ```bash
 sudo apt install android-tools-adb   # Ubuntu/Debian
-# Or download manually: https://developer.android.com/tools/releases/platform-tools
 ```
 
 **Windows:** See the [official guide](https://developer.android.com/tools/releases/platform-tools) to download and configure PATH.
+
+**Option B: Manual download**
+
+Download the official [ADB platform-tools](https://developer.android.com/tools/releases/platform-tools) and extract it, then add it to your PATH:
+
+**macOS / Linux:**
+
+```bash
+# Assuming extracted to ~/Downloads/platform-tools
+export PATH=${PATH}:~/Downloads/platform-tools
+```
+
+**Windows:** Add the extracted directory (e.g. `C:\platform-tools`) to the system PATH environment variable.
 
 #### Step 2: Connect Phone and Enable USB Debugging
 

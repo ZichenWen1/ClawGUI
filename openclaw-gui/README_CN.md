@@ -187,7 +187,7 @@ nanobot onboard
 
 #### Step 1: 安装 ADB
 
-下载官方 [ADB platform-tools](https://developer.android.com/tools/releases/platform-tools) 并解压。
+**方案 A：通过包管理器安装**
 
 **macOS（推荐 brew）：**
 
@@ -199,10 +199,22 @@ brew install android-platform-tools
 
 ```bash
 sudo apt install android-tools-adb   # Ubuntu/Debian
-# 或手动下载：https://developer.android.com/tools/releases/platform-tools
 ```
 
 **Windows：** 请参考 [官方指南](https://developer.android.com/tools/releases/platform-tools) 下载并配置环境变量。
+
+**方案 B：手动下载安装**
+
+下载官方 [ADB platform-tools](https://developer.android.com/tools/releases/platform-tools) 并解压，然后将其添加到 PATH 环境变量：
+
+**macOS / Linux：**
+
+```bash
+# 假设解压到 ~/Downloads/platform-tools
+export PATH=${PATH}:~/Downloads/platform-tools
+```
+
+**Windows：** 将解压目录（如 `C:\platform-tools`）添加到系统 PATH 环境变量中。
 
 #### Step 2: 连接手机并开启 USB 调试
 
