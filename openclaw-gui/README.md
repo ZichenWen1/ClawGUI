@@ -24,11 +24,19 @@
 ## 📑 Table of Contents
 
 - [Key Features](#-key-features)
-- [Architecture](#-architecture)
+- [Architecture](#️-architecture)
 - [Quick Start](#-quick-start)
+  - [Requirements](#requirements)
+  - [1. Installation](#1-installation)
+  - [2. Initialize and Edit Configuration](#2-initialize-and-edit-configuration)
+  - [3. Connect Android Device](#3-connect-android-device)
+  - [4. Configure Chat Platforms (optional)](#4-configure-chat-platforms-optional)
 - [Run](#-run)
 - [OpenGUI-Eval Evaluation](#-opengui-eval-evaluation)
-- [GUI Phone Control](#-gui-phone-control) (Web UI / Memory System / Supported GUI Models)
+- [GUI Phone Control](#-gui-phone-control)
+  - [Web UI](#web-ui)
+  - [Memory System](#memory-system)
+  - [Supported GUI Models](#supported-gui-models)
 - [Directory Structure](#-directory-structure)
 - [License](#-license)
 
