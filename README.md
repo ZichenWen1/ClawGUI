@@ -79,7 +79,7 @@ git clone https://github.com/sugarandgugu/OpenGUI.git
 cd OpenGUI
 ```
 
-OpenGUI consists of three independent modules. Click into each one for full installation and usage instructions.
+The OpenGUI system is organized into three tightly integrated modules. Click into each one for full installation and usage instructions.
 
 ---
 

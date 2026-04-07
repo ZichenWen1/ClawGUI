@@ -79,7 +79,7 @@ git clone https://github.com/sugarandgugu/OpenGUI.git
 cd OpenGUI
 ```
 
-OpenGUI 由三个独立模块组成，点击各模块查看完整安装与使用文档。
+OpenGUI 系统由三个紧密协作的模块组成，点击各模块查看完整安装与使用文档。
 
 ---
 
