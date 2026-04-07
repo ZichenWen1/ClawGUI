@@ -20,17 +20,21 @@
 <table>
 <tr>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/6481f7ba-58f2-4f4b-9e97-e81b7b64a027" controls width="320"></video>
+<video src="https://github.com/user-attachments/assets/cca75b33-4786-4f73-8c3f-ac3277831111" controls width="320"></video>
 <br><b>OpenClaw-GUI 搜集信息总结歌手纷争</b>
 </td>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/5fbf2064-52d5-47a3-9fca-f1ecf28e08f8" controls width="320"></video>
+<video src="https://github.com/user-attachments/assets/75a6e68d-8880-4e77-9135-a409f1de787c" controls width="320"></video>
 <br><b>OpenClaw-GUI 帮助用户解决网络问题</b>
 </td>
 </tr>
 <tr>
-<td align="center" colspan="2">
-<video src="https://github.com/user-attachments/assets/277db5ce-717a-4df4-ae6b-b4697298aaaa" controls width="320"></video>
+<td align="center">
+<video src="https://github.com/user-attachments/assets/bc486af2-23de-48d0-af30-aa7dbbd078a6" controls width="320"></video>
+<br><b>OpenClaw-GUI 协助用户查火车票信息并返回</b>
+</td>
+<td align="center">
+<video src="https://github.com/user-attachments/assets/c7155c5d-cdda-4784-94ec-e791a992979e" controls width="320"></video>
 <br><b>OpenClaw-GUI 帮助用户解决评测的燃眉之急</b>
 </td>
 </tr>
