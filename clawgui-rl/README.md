@@ -30,18 +30,18 @@
 
 ## 📖 Overview
 
-**ClawGUI-RL** is the training module of [ClawGUI](../README.md) — where agents are born. It provides an open-source online RL infrastructure for GUI agents, designed to be scalable, robust, and extensible.
+**ClawGUI-RL** is the training module of [ClawGUI](../README.md). It provides an open-source online RL infrastructure built specifically for GUI agents: parallel virtual environments or real physical devices, production-grade training stability, and GiGPO+PRM for step-level reward signals that go beyond what standard GRPO can offer.
 
-✨ **Key Features:**
+**Key Features:**
 
-- 🌐 **Parallel multi-environment training** — Scale training across dozens of virtual environments simultaneously, enabling efficient data collection and faster convergence.
-- 📱 **Real-device training support** — Supports training directly on physical Android devices, in addition to virtual environments, opening new possibilities for GUI agent research at production scale.
-- 🤖 **Multi-model support** — Out-of-the-box support for [MAI-UI](https://github.com/sugarandgugu/MAI-UI) and [GUI-Owl](https://github.com/sugarandgugu/GUI-Owl) GUI-Spec models, with an easily extensible interface for other VLMs (e.g., Qwen3-VL family).
-- 🔌 **Pluggable custom context** — The context builder is fully modular. Users can inject custom history, screenshots, action spaces, or any additional context into the agent's observation without modifying core training logic.
-- 🔄 **Environment restart & retry mechanisms** — Built-in periodic container restart and configurable retry logic ensure training stability over long runs, making the framework production-ready and robust.
-- ♻️ **Spare server rotation** — Automatically rotates among multiple backend server URLs, enabling graceful degradation and load balancing so that a single unhealthy server never stalls training.
-- 🏆 **GiGPO algorithm** — Integrates the GiGPO algorithm with an embedded Process Reward Model (PRM) for fine-grained step-level scoring, achieving better policy optimization than standard GRPO.
-- 🎬 **Episode trajectory recording & visualization** — Training episodes are automatically saved to the `episode/` directory. Use `scripts/episode_visualizer.py` to replay and inspect any rollout trajectory.
+- **GiGPO algorithm** — Replaces standard GRPO with GiGPO+PRM for fine-grained step-level scoring, yielding stronger policy optimization on GUI tasks.
+- **Parallel multi-environment training** — Runs dozens of Docker-based virtual Android environments simultaneously for fast, scalable data collection.
+- **Real-device training support** — Trains directly on physical Android devices (or cloud phones) using the same API as virtual environments.
+- **Multi-model support** — Out-of-the-box support for [MAI-UI](https://github.com/sugarandgugu/MAI-UI) and [GUI-Owl](https://github.com/sugarandgugu/GUI-Owl), with an extensible interface for other VLMs (e.g., Qwen3-VL family).
+- **Pluggable custom context** — Inject custom history, screenshots, or action spaces into the agent's observation without touching core training logic.
+- **Environment restart & retry mechanisms** — Periodic container restarts and configurable retry logic keep long training runs stable without manual intervention.
+- **Spare server rotation** — Automatically rotates across backend server URLs so a single unhealthy container never stalls training.
+- **Episode trajectory recording & visualization** — Episodes are saved to `episode/`; use `scripts/episode_visualizer.py` to replay any rollout.
 
 ---
 

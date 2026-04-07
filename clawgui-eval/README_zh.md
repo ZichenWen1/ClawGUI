@@ -6,8 +6,8 @@
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
-[![HuggingFace Dataset](https://img.shields.io/badge/🤗%20HuggingFace-clawgui--eval-yellow.svg)](https://huggingface.co/datasets/johnzqlu/opengui-eval)
-[![ModelScope Dataset](https://img.shields.io/badge/🤖%20ModelScope-clawgui--eval-purple.svg)](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+[![HuggingFace Dataset](https://img.shields.io/badge/🤗%20HuggingFace-clawgui--eval-yellow.svg)](https://huggingface.co/datasets/johnzqlu/clawgui-eval)
+[![ModelScope Dataset](https://img.shields.io/badge/🤖%20ModelScope-clawgui--eval-purple.svg)](https://modelscope.cn/datasets/Matrix0602/clawgui-eval)
 
 [English](README.md) | [中文](README_zh.md)
 
@@ -39,14 +39,14 @@
 **ClawGUI-Eval** 是 [ClawGUI](../README_zh.md) 的评测模块——衡量智能体学到了什么的地方。它提供标准化的 GUI Grounding 模型评测框架，采用 **Infer → Judge → Metric** 三阶段流水线，评估模型根据自然语言指令定位 UI 元素的准确性。
 
 ✨ **核心特性：**
-- 🔌 **双后端支持** — 本地 GPU 推理（`transformers`）或远程 API 调用（OpenAI 兼容接口）
-- 📊 **6 大 Benchmark** — ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
-- 🤖 **11+ 模型** — Qwen3-VL、Qwen2.5-VL、UI-TARS、MAI-UI、GUI-G2、UI-Venus、Gemini、Seed 1.8 等
-- ⚡ **多 GPU & 多线程** — 并行推理，支持断点续推
-- 🧩 **易于扩展** — 继承基类即可添加新模型
-- ✅ **忠实复现** — 提供详细的官方 vs. 复现结果对比（[查看详情](#-复现结果)）
-- 🌐 **前沿模型评测** — 成功复现 Gemini 3.0 Pro 和 Seed 1.8 在 ScreenSpot-Pro 上的官方结果，并新增 Gemini 3.1 Pro 评测
-- 🤖 **ClawGUI-Agent 集成** — 搭配 [ClawGUI-Agent](../clawgui-agent) 使用，一句自然语言即可启动完整评测流程（环境检测 → 推理 → 判分 → 指标）。详见 [ClawGUI-Agent README](../clawgui-agent/README_CN.md#-clawgui-eval-评测)
+- **双后端支持** — 本地 GPU 推理（`transformers`）或远程 API 调用（OpenAI 兼容接口）
+- **6 大 Benchmark** — ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
+- **11+ 模型** — Qwen3-VL、Qwen2.5-VL、UI-TARS、MAI-UI、GUI-G2、UI-Venus、Gemini、Seed 1.8 等
+- **多 GPU & 多线程** — 并行推理，支持断点续推
+- **易于扩展** — 继承基类即可添加新模型
+- **忠实复现** — 提供详细的官方 vs. 复现结果对比（[查看详情](#-复现结果)）
+- **前沿模型评测** — 成功复现 Gemini 3.0 Pro 和 Seed 1.8 在 ScreenSpot-Pro 上的官方结果，并新增 Gemini 3.1 Pro 评测
+- **ClawGUI-Agent 集成** — 搭配 [ClawGUI-Agent](../clawgui-agent) 使用，一句自然语言即可启动完整评测流程（环境检测 → 推理 → 判分 → 指标）。详见 [ClawGUI-Agent README](../clawgui-agent/README_CN.md#-clawgui-eval-评测)
 
 ---
 
@@ -94,7 +94,7 @@ pip install -U huggingface_hub
 # 如果 HF 访问困难，请使用镜像：
 # export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
+huggingface-cli download johnzqlu/clawgui-eval --repo-type dataset --local-dir .
 ```
 
 **从 ModelScope 下载：**
@@ -102,7 +102,7 @@ huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
 ```bash
 pip install -U modelscope
 
-modelscope download --dataset Matrix0602/opengui-eval --local_dir .
+modelscope download --dataset Matrix0602/clawgui-eval --local_dir .
 ```
 
 下载后在 `clawgui-eval/` 目录下解压压缩包：
@@ -355,7 +355,7 @@ bash scripts/metric/run_metric_androidcontrol.sh
 
 > 判定标准：复现数值高于或等于官方数值，或绝对差值 ≤ 2%，则视为复现成功（✅）。
 
-详细结果见英文版 README 或数据集页面：[🤗 HuggingFace](https://huggingface.co/datasets/johnzqlu/opengui-eval) | [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+详细结果见英文版 README 或数据集页面：[🤗 HuggingFace](https://huggingface.co/datasets/johnzqlu/clawgui-eval) | [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/clawgui-eval)
 
 ---
 

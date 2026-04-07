@@ -19,7 +19,7 @@
 
 ---
 
-**ClawGUI-Agent** is the deployment module of [ClawGUI](../README.md) — where GUI agents meet the real world. Built on [OpenClaw](https://github.com/openclaw/openclaw) and powered by [nanobot](https://github.com/HKUDS/nanobot), it provides two core capabilities: **GUI phone control** and **one-command evaluation**. Users can remotely control their phones via natural language on chat platforms like Feishu, QQ, and Telegram, or launch [ClawGUI-Eval](../clawgui-eval) standardized evaluation pipelines with a single command. Under the hood, the framework leverages Vision-Language Models (VLMs) to understand screen content, plan and execute GUI actions (tap, swipe, type, etc.), forming a closed-loop "screenshot → reasoning → action" automation.
+**ClawGUI-Agent** is the deployment module of [ClawGUI](../README.md). Built on [OpenClaw](https://github.com/openclaw/openclaw) and powered by [nanobot](https://github.com/HKUDS/nanobot), it provides two core capabilities: **GUI phone control** and **one-command evaluation**. For phone control, it drives a Vision-Language Model through a closed-loop "screenshot → reasoning → action" cycle to autonomously complete tasks on Android, HarmonyOS, and iOS devices — accessible from Feishu, QQ, Telegram, and 12+ other chat platforms. For evaluation, a single natural-language command triggers the full [ClawGUI-Eval](../clawgui-eval) pipeline: environment check, multi-GPU inference, judging, and metric reporting.
 
 ## 📑 Table of Contents
 
@@ -42,19 +42,13 @@
 
 ## ✨ Key Features
 
-- 💬 **nanobot Integration** — Remotely control phones from 12+ chat platforms including Feishu / DingTalk / Telegram / Discord / Slack / QQ, issue tasks anytime anywhere
-
-- 📱 **GUI Phone Control** — Powered by OpenClaw, AI autonomously captures screenshots, understands the screen, and performs tap/swipe/type GUI actions to complete complex tasks
-
-- 📊 **ClawGUI-Eval Integration** — Built-in [ClawGUI-Eval](../clawgui-eval) evaluation skill, launch GUI Grounding model benchmarks with natural language (environment check → multi-GPU inference → judging → metric calculation), with automatic progress monitoring and result comparison against official baselines
-
-- 🧠 **Multi-Model Support** — Compatible with AutoGLM, Qwen VL, UI-TARS, MAI-UI, GUI-Owl and more VLMs, connected via OpenAI-compatible API
-
-- 💾 **Personalized Memory** — Automatically learns user preferences (contacts, frequently used apps, habits), with a vector-search-based persistent memory system
-
-- 📝 **Real-time Episode Recording** — Each task execution (screenshots + model outputs + actions) is saved as a structured episode, enabling replay and dataset construction
-
-- 🖥️ **Web UI** — Gradio-based web interface for device management, task execution visualization, manual takeover, memory management and more
+- **nanobot Integration** — Remotely control phones from 12+ chat platforms including Feishu / DingTalk / Telegram / Discord / Slack / QQ, issue tasks anytime anywhere
+- **GUI Phone Control** — Powered by OpenClaw, AI autonomously captures screenshots, understands the screen, and performs tap/swipe/type GUI actions to complete complex tasks
+- **ClawGUI-Eval Integration** — Built-in [ClawGUI-Eval](../clawgui-eval) evaluation skill, launch GUI Grounding model benchmarks with natural language (environment check → multi-GPU inference → judging → metric calculation), with automatic progress monitoring and result comparison against official baselines
+- **Multi-Model Support** — Compatible with AutoGLM, Qwen VL, UI-TARS, MAI-UI, GUI-Owl and more VLMs, connected via OpenAI-compatible API
+- **Personalized Memory** — Automatically learns user preferences (contacts, frequently used apps, habits), with a vector-search-based persistent memory system
+- **Real-time Episode Recording** — Each task execution (screenshots + model outputs + actions) is saved as a structured episode, enabling replay and dataset construction
+- **Web UI** — Gradio-based web interface for device management, task execution visualization, manual takeover, memory management and more
 
 ## 🏗️ Architecture
 
@@ -167,7 +161,7 @@ Then edit `~/.nanobot/config.json`. Here is a reference configuration:
 
 > **Important: `workspace` Path Setting**
 >
-> Set `workspace` to the root directory of your ClawGUI project (the directory containing both `clawgui-agent/` and `clawgui-eval/`). This allows the built-in evaluation skill (ClawGUI-Eval) to locate the evaluation framework correctly. For example, if your project is at `/home/user/ClawGUI`, set it to `"/home/user/ClawGUI"`.
+> Set `workspace` to the ClawGUI project root — the directory that contains both `clawgui-agent/` and `clawgui-eval/`. The built-in evaluation skill uses this path to locate the evaluation framework. For example, if your project lives at `/home/user/ClawGUI`, set `workspace` to `"/home/user/ClawGUI"`.
 
 #### GUI Tool Parameters
 
@@ -326,7 +320,7 @@ nanobot will invoke the `gui_execute` tool, automatically capturing screenshots 
 
 ## 📊 ClawGUI-Eval Evaluation
 
-ClawGUI-Agent has a built-in [ClawGUI-Eval](../clawgui-eval) evaluation skill that drives standardized GUI Grounding model evaluation via natural language.
+ClawGUI-Agent includes a built-in [ClawGUI-Eval](../clawgui-eval) skill that turns natural language into a complete benchmark run — from GPU environment check through multi-GPU inference, judging, and metric reporting — without writing a single script.
 
 ### Prerequisites
 

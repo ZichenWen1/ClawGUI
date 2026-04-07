@@ -33,14 +33,14 @@
 
 ✨ **核心特性：**
 
-- 🌐 **多环境并行训练** — 支持数十个虚拟环境同时并行训练，大幅提升数据采集效率与收敛速度。
-- 📱 **真机训练支持** — 支持在真实 Android 手机上进行 RL 训练，同时兼容虚拟环境，为 GUI 智能体研究提供了新的可能性。
-- 🤖 **多模型支持** — 开箱即用地支持 [MAI-UI](https://github.com/sugarandgugu/MAI-UI) 和 [GUI-Owl](https://github.com/sugarandgugu/GUI-Owl) 两类 GUI-Spec 模型，并提供简洁的扩展接口，支持 Qwen3-VL 系列等通用多模态大模型。
-- 🔌 **可插拔自定义 Context** — Context 构建器完全模块化，用户可自由注入历史截图、动作空间、自定义信息等，无需修改核心训练逻辑。
-- 🔄 **环境重启与重试机制** — 内置周期性容器重启与可配置重试逻辑，保障长时间训练的稳定性。
-- ♻️ **Spare Server 轮转机制** — 自动在多个后端 URL 之间轮转，单个服务器异常不会阻塞训练进程。
-- 🏆 **GiGPO 算法** — 集成 GiGPO 算法与过程奖励模型（PRM），实现细粒度的逐步打分，相比标准 GRPO 取得更优的策略优化效果。
-- 🎬 **Episode 轨迹记录与可视化** — 训练过程中的 Episode 轨迹自动保存至 `episode/` 目录，可通过 `scripts/episode_visualizer.py` 对任意 Rollout 轨迹进行回放与检查。
+- **多环境并行训练** — 支持数十个虚拟环境同时并行训练，大幅提升数据采集效率与收敛速度。
+- **真机训练支持** — 支持在真实 Android 手机上进行 RL 训练，同时兼容虚拟环境，为 GUI 智能体研究提供了新的可能性。
+- **多模型支持** — 开箱即用地支持 [MAI-UI](https://github.com/sugarandgugu/MAI-UI) 和 [GUI-Owl](https://github.com/sugarandgugu/GUI-Owl) 两类 GUI-Spec 模型，并提供简洁的扩展接口，支持 Qwen3-VL 系列等通用多模态大模型。
+- **可插拔自定义 Context** — Context 构建器完全模块化，用户可自由注入历史截图、动作空间、自定义信息等，无需修改核心训练逻辑。
+- **环境重启与重试机制** — 内置周期性容器重启与可配置重试逻辑，保障长时间训练的稳定性。
+- **Spare Server 轮转机制** — 自动在多个后端 URL 之间轮转，单个服务器异常不会阻塞训练进程。
+- **GiGPO 算法** — 集成 GiGPO 算法与过程奖励模型（PRM），实现细粒度的逐步打分，相比标准 GRPO 取得更优的策略优化效果。
+- **Episode 轨迹记录与可视化** — 训练过程中的 Episode 轨迹自动保存至 `episode/` 目录，可通过 `scripts/episode_visualizer.py` 对任意 Rollout 轨迹进行回放与检查。
 
 ---
 

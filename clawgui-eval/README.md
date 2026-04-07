@@ -6,8 +6,8 @@
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
-[![HuggingFace Dataset](https://img.shields.io/badge/🤗%20HuggingFace-clawgui--eval-yellow.svg)](https://huggingface.co/datasets/johnzqlu/opengui-eval)
-[![ModelScope Dataset](https://img.shields.io/badge/🤖%20ModelScope-clawgui--eval-purple.svg)](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+[![HuggingFace Dataset](https://img.shields.io/badge/🤗%20HuggingFace-clawgui--eval-yellow.svg)](https://huggingface.co/datasets/johnzqlu/clawgui-eval)
+[![ModelScope Dataset](https://img.shields.io/badge/🤖%20ModelScope-clawgui--eval-purple.svg)](https://modelscope.cn/datasets/Matrix0602/clawgui-eval)
 
 [English](README.md) | [中文](README_zh.md)
 
@@ -36,17 +36,17 @@
 
 ## 📖 Overview
 
-**ClawGUI-Eval** is the evaluation module of [ClawGUI](../README.md) — where agents are measured. It provides a standardized evaluation framework for GUI grounding models, adopting a three-stage pipeline — **Infer → Judge → Metric** — to evaluate how accurately a model can locate UI elements based on natural language instructions.
+**ClawGUI-Eval** is the evaluation module of [ClawGUI](../README.md). GUI grounding evaluation is harder to reproduce than it looks: prompt order, coordinate systems, temperature, and image resolution all interact to shift numbers by several points. ClawGUI-Eval pins all of these choices per model and adopts a three-stage pipeline — **Infer → Judge → Metric** — to evaluate how accurately a model can locate UI elements based on natural language instructions. The result is a **95.8%** reproduction rate against official baselines, making cross-paper comparisons meaningful.
 
-✨ **Key Features:**
-- 🔌 **Dual backend support** — Local GPU via `transformers` or remote API via OpenAI-compatible endpoints
-- 📊 **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
-- 🤖 **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
-- ⚡ **Multi-GPU & multi-thread** — Parallel inference with automatic resume
-- 🧩 **Easily extensible** — Add new models by inheriting a simple base class
-- ✅ **Faithful reproduction** — Comprehensive reproduction results with detailed official vs. reproduced comparisons ([see details](#-reproduction-results))
-- 🌐 **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro, and added Gemini 3.1 Pro evaluation
-- 🤖 **ClawGUI-Agent integration** — Pair with [ClawGUI-Agent](../clawgui-agent) to launch the full evaluation pipeline with a single natural language command (env check → inference → judging → metrics). See [ClawGUI-Agent README](../clawgui-agent/README.md#-clawgui-eval-evaluation) for setup details
+**Key Features:**
+- **Dual backend support** — Local GPU via `transformers` or remote API via OpenAI-compatible endpoints
+- **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
+- **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
+- **Multi-GPU & multi-thread** — Parallel inference with automatic resume
+- **Easily extensible** — Add new models by inheriting a simple base class
+- **Faithful reproduction** — Comprehensive reproduction results with detailed official vs. reproduced comparisons ([see details](#-reproduction-results))
+- **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro, and added Gemini 3.1 Pro evaluation
+- **ClawGUI-Agent integration** — Pair with [ClawGUI-Agent](../clawgui-agent) to launch the full evaluation pipeline with a single natural language command (env check → inference → judging → metrics). See [ClawGUI-Agent README](../clawgui-agent/README.md#-clawgui-eval-evaluation) for setup details
 
 ---
 
@@ -94,7 +94,7 @@ pip install -U huggingface_hub
 # If you have trouble accessing HF, use the mirror:
 # export HF_ENDPOINT=https://hf-mirror.com
 
-huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
+huggingface-cli download johnzqlu/clawgui-eval --repo-type dataset --local-dir .
 ```
 
 **From ModelScope:**
@@ -102,7 +102,7 @@ huggingface-cli download johnzqlu/opengui-eval --repo-type dataset --local-dir .
 ```bash
 pip install -U modelscope
 
-modelscope download --dataset Matrix0602/opengui-eval --local_dir .
+modelscope download --dataset Matrix0602/clawgui-eval --local_dir .
 ```
 
 Then extract the archives under the `clawgui-eval/` directory:
@@ -416,7 +416,7 @@ Each input sample must contain the following fields:
 A key goal of ClawGUI-Eval is **faithful reproduction** of officially reported numbers. Below we compare our reproduced results against official baselines across all supported benchmarks.
 
 > 📂 **All inference results are publicly available on our dataset page:**
-> [🤗 HuggingFace: johnzqlu/opengui-eval](https://huggingface.co/datasets/johnzqlu/opengui-eval) | [🤖 ModelScope: Matrix0602/opengui-eval](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+> [🤗 HuggingFace: johnzqlu/clawgui-eval](https://huggingface.co/datasets/johnzqlu/clawgui-eval) | [🤖 ModelScope: Matrix0602/clawgui-eval](https://modelscope.cn/datasets/Matrix0602/clawgui-eval)
 
 > **Criterion:** A result is considered **successfully reproduced** (✅) if the reproduced number **meets or exceeds** the official number, or the absolute difference is **≤ 2%**. `-` means no official baseline is available.
 

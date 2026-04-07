@@ -1,13 +1,13 @@
 <div align="center">
 
-<img src="assets/OpenGUI-Logo.png" height="140" alt="ClawGUI Logo">
+<img src="assets/ClawGUI-Logo.png" height="140" alt="ClawGUI Logo">
 <h1>ClawGUI: Build, Evaluate, and Deploy GUI Agents</h1>
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/downloads/release/python-3120/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Stars](https://img.shields.io/github/stars/ZJU-REAL/OpenGUI?style=social)](https://github.com/ZJU-REAL/OpenGUI/stargazers)
-[![HuggingFace Model](https://img.shields.io/badge/🤗%20HuggingFace-OpenGUI--2B-yellow.svg)](https://huggingface.co/SugarVapeur/OpenGUI-2B)
-[![ModelScope Model](https://img.shields.io/badge/🤖%20ModelScope-OpenGUI--2B-purple.svg)](https://www.modelscope.cn/models/SugarFree/OpenGUI-2B)
+[![Stars](https://img.shields.io/github/stars/ZJU-REAL/ClawGUI?style=social)](https://github.com/ZJU-REAL/ClawGUI/stargazers)
+[![HuggingFace Model](https://img.shields.io/badge/🤗%20HuggingFace-ClawGUI--2B-yellow.svg)](https://huggingface.co/SugarVapeur/OpenGUI-2B)
+[![ModelScope Model](https://img.shields.io/badge/🤖%20ModelScope-ClawGUI--2B-purple.svg)](https://www.modelscope.cn/models/SugarFree/OpenGUI-2B)
 
 [English](README.md) | [中文](README_zh.md)
 
@@ -16,7 +16,7 @@
 ---
 
 <div align="center">
-<b>Your Next-Generation AI Assistant</b>
+<b>A unified research framework: train GUI agents with RL, measure them rigorously, deploy them on real devices.</b>
 <table>
 <tr>
 <td align="center">
@@ -45,7 +45,7 @@
 
 ## News
 
-+ [2026/4/8] We released ClawGUI, including three modules: ClawGUI-Agent for agent inference and deployment, ClawGUI-RL for online RL training, and ClawGUI-Eval for standardized evaluation. We also open-sourced ClawGUI-2B, a 2B GUI agent trained with ClawGUI-RL using GiGPO, achieving 17.1 MobileWorld SR — surpassing the baseline 11.1 by a large margin. Check out the [Quick Start](#-quick-start) section to get started!
++ [2026/4/8] ClawGUI is released — train with ClawGUI-RL (GiGPO), evaluate with ClawGUI-Eval, deploy with ClawGUI-Agent. ClawGUI-2B, a 2B agent trained end-to-end with this pipeline, hits **17.1** MobileWorld SR vs. the **11.1** baseline. See [Quick Start](#-quick-start).
 
 ## Table of Contents
 
@@ -72,7 +72,7 @@ Building a capable GUI agent involves three tightly coupled problems that are ra
 | 🚀 **[ClawGUI-RL](clawgui-rl/)** | **Build** — Train GUI agents online with scalable RL: parallel Docker environments, real Android devices, and GiGPO+PRM for fine-grained step-level rewards |
 | 📊 **[ClawGUI-Eval](clawgui-eval/)** | **Evaluate** — Measure what the agent has learned: 6 benchmarks, 11+ models, 95.8% faithful reproduction of official results |
 | 🤖 **[ClawGUI-Agent](clawgui-agent/)** | **Deploy** — Use GUI agents in the real world: control mobile devices via natural language through 12+ chat platforms, with one-command evaluation built in |
-| 🏆 **ClawGUI-2B** | Proof of the pipeline: a 2B agent trained end-to-end with ClawGUI-RL using GiGPO, achieving **17.1** MobileWorld SR vs. the **11.1** baseline |
+| 🏆 **ClawGUI-2B** | End-to-end validation: trained entirely with ClawGUI-RL and GiGPO, achieving **17.1** MobileWorld SR vs. the **11.1** baseline |
 
 ---
 
@@ -87,8 +87,8 @@ Building a capable GUI agent involves three tightly coupled problems that are ra
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/ZJU-REAL/OpenGUI.git
-cd OpenGUI
+git clone https://github.com/ZJU-REAL/ClawGUI.git
+cd ClawGUI
 ```
 
 Each module is independent with its own environment. Click into each one for full installation and usage instructions.
@@ -99,7 +99,7 @@ Each module is independent with its own environment. Click into each one for ful
 
 > 📁 [`clawgui-rl/`](clawgui-rl/) · 📖 [Full Documentation](clawgui-rl/README.md)
 
-ClawGUI-RL is where agents are born. It provides a scalable online RL infrastructure purpose-built for GUI agents, supporting both virtual environment scaling and real-device training.
+ClawGUI-RL trains GUI agents with online reinforcement learning. It runs dozens of Docker-based Android emulators in parallel or trains directly on physical devices — and replaces standard GRPO with GiGPO+PRM for fine-grained step-level rewards that drive stronger policy learning.
 
 - **Parallel multi-environment** — Dozens of Docker-based virtual Android environments simultaneously
 - **Real-device training** — Physical or cloud Android phones with the same API
@@ -117,9 +117,9 @@ ClawGUI-RL is where agents are born. It provides a scalable online RL infrastruc
 
 ### 📊 ClawGUI-Eval — Evaluate
 
-> 📁 [`clawgui-eval/`](clawgui-eval/) · 📖 [Full Documentation](clawgui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/opengui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/opengui-eval)
+> 📁 [`clawgui-eval/`](clawgui-eval/) · 📖 [Full Documentation](clawgui-eval/README.md) · [🤗 Dataset](https://huggingface.co/datasets/johnzqlu/clawgui-eval) · [🤖 ModelScope](https://modelscope.cn/datasets/Matrix0602/clawgui-eval)
 
-ClawGUI-Eval is where agents are measured. It provides a standardized GUI grounding evaluation framework with a three-stage **Infer → Judge → Metric** pipeline and a **95.8%** reproduction rate against official results.
+ClawGUI-Eval gives GUI grounding research a reliable measurement baseline. Its three-stage **Infer → Judge → Metric** pipeline covers 6 benchmarks and 11+ models, with a **95.8%** reproduction rate against official results — so numbers across papers are actually comparable.
 
 - **6 benchmarks** — ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
 - **11+ models** — Qwen3-VL, Qwen2.5-VL, UI-TARS, MAI-UI, GUI-G2, UI-Venus, Gemini, Seed 1.8, and more
@@ -139,7 +139,7 @@ ClawGUI-Eval is where agents are measured. It provides a standardized GUI ground
 
 > 📁 [`clawgui-agent/`](clawgui-agent/) · 📖 [Full Documentation](clawgui-agent/README.md) · [English](clawgui-agent/README_EN.md)
 
-ClawGUI-Agent is where agents meet the real world. Built on OpenClaw and powered by nanobot, it provides two core capabilities: **GUI phone control** and **one-command evaluation**. Control mobile devices with natural language through 12+ chat platforms, or trigger the full ClawGUI-Eval pipeline with a single sentence.
+ClawGUI-Agent closes the loop from training to production. Built on OpenClaw and powered by nanobot, it lets you control Android, HarmonyOS, or iOS devices with natural language from 12+ chat platforms — and trigger the full ClawGUI-Eval benchmark pipeline with a single sentence, no scripts required.
 
 - **Cross-platform** — Android (ADB), HarmonyOS (HDC), iOS (XCTest)
 - **Multi-model** — AutoGLM, MAI-UI, GUI-Owl, Qwen-VL, UI-TARS via OpenAI-compatible API
@@ -171,7 +171,7 @@ ClawGUI-Agent is where agents meet the real world. Built on OpenClaw and powered
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
 
 ClawGUI is built upon the following excellent open-source projects. We sincerely thank their contributors:
 
