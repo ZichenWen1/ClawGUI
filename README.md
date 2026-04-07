@@ -103,7 +103,7 @@ OpenClaw-GUI is a GUI agent framework built on OpenClaw, providing two core capa
 - 🖥️ **Web UI** — Gradio interface for device management, task execution, and memory inspection
 
 <div align="center">
-<img src="openclaw-gui/assets/openclaw-gui-logo.png" width="75%" alt="OpenClaw-GUI">
+<img src="openclaw-gui/assets/openclaw-gui-logo.png" width="85%" alt="OpenClaw-GUI">
 </div>
 
 → **[Get started with OpenClaw-GUI](openclaw-gui/README.md)**
@@ -123,7 +123,7 @@ OpenGUI-RL is a scalable online RL infrastructure for GUI agent training, suppor
 - 🎬 **Episode visualization** — Record and replay any training trajectory
 
 <div align="center">
-<img src="opengui-rl/assets/opengui-rl-framework.png" width="75%" alt="OpenGUI-RL Architecture">
+<img src="opengui-rl/assets/opengui-rl-framework.png" width="80%" alt="OpenGUI-RL Architecture">
 </div>
 
 → **[Get started with OpenGUI-RL](opengui-rl/README.md)**
@@ -143,7 +143,7 @@ OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-s
 - 🤖 **OpenClaw-GUI integration** — Pair with OpenClaw-GUI to run the full pipeline via natural language
 
 <div align="center">
-<img src="opengui-eval/assets/openclaw-eval.png" width="75%" alt="OpenGUI-Eval Architecture">
+<img src="opengui-eval/assets/openclaw-eval.png" width="80%" alt="OpenGUI-Eval Architecture">
 </div>
 
 → **[Get started with OpenGUI-Eval](opengui-eval/README.md)**
