@@ -17,7 +17,6 @@
 
 [English](README.md) | [中文](README_CN.md)
 
----
 
 **ClawGUI-Agent** 是 [ClawGUI](../README_zh.md) 的部署模块。基于 [OpenClaw](https://github.com/openclaw/openclaw) 构建，由 [nanobot](https://github.com/HKUDS/nanobot) 驱动，提供两大核心能力：**GUI 手机操控**和**一句话评测**。手机操控方面，框架驱动视觉语言模型（VLM）在 Android、鸿蒙、iOS 设备上完成"截屏 → 推理 → 操作"闭环自动化，可通过飞书、QQ、Telegram 等 12+ 聊天平台远程下发任务。评测方面，一句自然语言即可触发完整的 [ClawGUI-Eval](../clawgui-eval) 流程：环境检测、多 GPU 推理、判分、指标汇报，全程无需手写脚本。
 
@@ -382,7 +381,6 @@ nanobot 会自动完成以下流程：
 
 支持的 Benchmark：ScreenSpot-Pro、ScreenSpot-V2、UIVision、MMBench-GUI、OSWorld-G、AndroidControl
 
----
 
 ## 📱 GUI 手机操控能力
 
@@ -434,7 +432,6 @@ python webui.py
 
 所有模型均通过 **OpenAI 兼容 API** 接入，可使用本地 vLLM / SGLang 部署，也可对接智谱 BigModel、阿里云百炼、OpenRouter 等云端服务。
 
----
 
 ## 📁 目录结构
 

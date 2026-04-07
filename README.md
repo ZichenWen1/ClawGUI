@@ -13,7 +13,6 @@
 
 </div>
 
----
 
 <div align="center">
 <b>A unified research framework: train GUI agents with RL, measure them rigorously, deploy them on real devices.</b>
@@ -41,7 +40,6 @@
 </table>
 </div>
 
----
 
 ## News
 
@@ -59,7 +57,6 @@
 - [Acknowledgements](#-acknowledgements)
 - [License](#-license)
 
----
 
 ## 💡 Overview
 
@@ -74,7 +71,6 @@ Building a capable GUI agent involves three tightly coupled problems that are ra
 | 🤖 **[ClawGUI-Agent](clawgui-agent/)** | **Deploy** — Use GUI agents in the real world: control mobile devices via natural language through 12+ chat platforms, with one-command evaluation built in |
 | 🏆 **ClawGUI-2B** | End-to-end validation: trained entirely with ClawGUI-RL and GiGPO, achieving **17.1** MobileWorld SR vs. the **11.1** baseline |
 
----
 
 ## 🏗️ Architecture
 
@@ -82,7 +78,6 @@ Building a capable GUI agent involves three tightly coupled problems that are ra
 <img src="assets/clawgui-framework.png" width="85%" alt="ClawGUI System Architecture">
 </div>
 
----
 
 ## 🚀 Quick Start
 
@@ -93,7 +88,6 @@ cd ClawGUI
 
 Each module is independent with its own environment. Click into each one for full installation and usage instructions.
 
----
 
 ### 🚀 ClawGUI-RL — Build
 
@@ -113,7 +107,6 @@ ClawGUI-RL trains GUI agents with online reinforcement learning. It runs dozens 
 
 → **[Get started with ClawGUI-RL](clawgui-rl/README.md)**
 
----
 
 ### 📊 ClawGUI-Eval — Evaluate
 
@@ -133,7 +126,6 @@ ClawGUI-Eval gives GUI grounding research a reliable measurement baseline. Its t
 
 → **[Get started with ClawGUI-Eval](clawgui-eval/README.md)**
 
----
 
 ### 🤖 ClawGUI-Agent — Deploy
 
@@ -154,7 +146,6 @@ ClawGUI-Agent closes the loop from training to production. Built on OpenClaw and
 
 → **[Get started with ClawGUI-Agent](clawgui-agent/README.md)**
 
----
 
 ## 🎯 Roadmap
 
@@ -169,7 +160,6 @@ ClawGUI-Agent closes the loop from training to production. Built on OpenClaw and
 - [ ] **Hybrid CLI & GUI Mechanism** — Explore hybrid interaction combining command-line and GUI operations
 - [ ] **Real-time RL** — Integrate real-time reinforcement learning based on the OPD algorithm for ClawGUI-RL and ClawGUI-Agent
 
----
 
 ## 🤝 Contributing
 
@@ -179,7 +169,6 @@ We welcome contributions of all kinds — new model support, new RL environments
   <img src="https://contrib.rocks/image?repo=ZJU-REAL/ClawGUI" />
 </a>
 
----
 
 ## 🙏 Acknowledgements
 
@@ -192,7 +181,6 @@ ClawGUI is built upon the following excellent open-source projects. We sincerely
 - [**nanobot**](https://github.com/HKUDS/nanobot)
 - [**Open-AutoGLM**](https://github.com/zai-org/Open-AutoGLM)
 
----
 
 ## License
 

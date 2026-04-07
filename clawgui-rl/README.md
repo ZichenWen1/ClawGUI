@@ -12,7 +12,6 @@
 
 </div>
 
----
 
 ## 📚 Table of Contents
 
@@ -29,7 +28,6 @@
 - [Experimental Results](#-experimental-results)
 - [Acknowledgements](#-acknowledgements)
 
----
 
 ## 📖 Overview
 
@@ -47,7 +45,6 @@
 - **Spare server rotation** — Automatically rotates across backend server URLs so a single unhealthy container never stalls training.
 - **Episode trajectory recording & visualization** — Episodes are saved to `episode/`; use `scripts/episode_visualizer.py` to replay any rollout.
 
----
 
 ## 🏗️ Architecture
 
@@ -66,7 +63,6 @@ ClawGUI-RL is built on [verl](https://github.com/volcengine/verl) with a **Ray s
 - **Hybrid vLLM engine** — vLLM handles token generation during rollout; training weights are synced back via `broadcast_from_vllm()` after each gradient step.
 - **Multi-turn rollout loop** — Each episode is a multi-step conversation: the agent receives a screenshot, reasons, outputs an action (tap/swipe/type/terminate), and receives the next screenshot until termination or `max_steps`.
 
----
 
 ## 🧬 GiGPO Algorithm
 
@@ -84,7 +80,6 @@ The final advantage for each token is a blend of episode-level and step-level si
 
 **PRM integration.** When `step_reward_judge=True`, a VLM-as-judge (the Process Reward Model) evaluates each intermediate step independently: given the screenshot before and after the action, it produces a score ∈ {0, 1}. This score augments the environment reward at each step, giving the optimizer a denser training signal than the sparse binary episode-success reward alone.
 
----
 
 ## 🔧 Installation
 
@@ -101,13 +96,11 @@ pip install datasets
 pip install -e .
 ```
 
----
 
 ## 🚀 Quick Start
 
 ClawGUI-RL supports two training modes: **virtual environment scaling** (via Docker-based MobileWorld) and **real device training** (via physical or cloud Android phones).
 
----
 
 ### 1. Virtual Environment Scaling
 
@@ -220,7 +213,6 @@ bash examples/grpo_trainer/run_mobileworld.sh
 bash examples/gigpo_trainer/run_mobileworld.sh
 ```
 
----
 
 ### 2. Real Device Training
 
@@ -319,7 +311,6 @@ Key parameters specific to real device training:
 
 > **Note:** Due to physical device limitations, we have not validated large-scale real-device training. We recommend cloud phones for large-scale experiments, as the interaction protocol is identical.
 
----
 
 ### 3. Convert Checkpoint to HuggingFace Format
 
@@ -340,7 +331,6 @@ Training episodes are automatically saved to the `episode/` directory. You can r
 python scripts/episode_visualizer.py --episode_dir episode/<your_episode>
 ```
 
----
 
 ## 🧩 How to Add a New Environment
 
@@ -358,7 +348,6 @@ Each environment package implements a standard interface for:
 
 This modular design also means you can train GUI-Spec models other than MAI-UI and GUI-Owl — including general VLMs from the Qwen3-VL series — by implementing the appropriate model adapter alongside the environment.
 
----
 
 ## 📈 Experimental Results
 
@@ -384,7 +373,6 @@ We release **ClawGUI-2B**, a GUI agent trained using the ClawGUI-RL framework wi
 | ***Ours*** | **ClawGUI-2B [GRPO]** | **14.5** |
 | | **ClawGUI-2B [GiGPO]** | **17.1** |
 
----
 
 ## 📄 License
 

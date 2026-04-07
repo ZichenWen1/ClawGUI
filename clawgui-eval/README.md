@@ -13,7 +13,6 @@
 
 </div>
 
----
 
 ## 📚 Table of Contents
 
@@ -32,7 +31,6 @@
 - [Roadmap](#️-roadmap)
 - [License](#-license)
 
----
 
 ## 📖 Overview
 
@@ -48,7 +46,6 @@
 - **Frontier model evaluation** — Successfully reproduced Gemini 3.0 Pro and Seed 1.8 official results on ScreenSpot-Pro using a **Zoom paradigm** (2-stage crop-then-ground: Gemini uses 25% crop tiles, Seed uses 50% crop tiles), and added Gemini 3.1 Pro evaluation
 - **ClawGUI-Agent integration** — Pair with [ClawGUI-Agent](../clawgui-agent) to launch the full evaluation pipeline with a single natural language command (env check → inference → judging → metrics). See [ClawGUI-Agent README](../clawgui-agent/README.md#-clawgui-eval-evaluation) for setup details
 
----
 
 ## 🏗️ Architecture
 
@@ -60,7 +57,6 @@
 <img src="assets/reproduction_by_benchmark.png" width="90%" alt="Reproduction Results by Benchmark">
 </div>
 
----
 
 ## 🔧 Installation
 
@@ -105,7 +101,6 @@ docker compose run clawgui-eval \
 
 > **Note:** Edit `MODEL_PATH` inside the shell scripts to point to `/models/<your-model-dir>` (the container-side path of `MODEL_DIR`).
 
----
 
 ### Option B: Conda + pip
 
@@ -122,7 +117,6 @@ pip install vllm==0.11.0
 
 > 💡 **Tip:** If building `flash-attn` from source is too slow, you can download a prebuilt wheel from the [flash-attn releases page](https://github.com/Dao-AILab/flash-attention/releases) and install it directly.
 
----
 
 ## 📥 Download Data
 
@@ -164,7 +158,6 @@ unzip output.zip
 | `data.zip` | Benchmark data & prompt files (`data/` directory) |
 | `output.zip` | Pre-computed inference & judge results (`output/` directory) |
 
----
 
 ## 📁 Project Structure
 
@@ -211,7 +204,6 @@ clawgui-eval/
 └── 📂 output/                           # Inference & judge output
 ```
 
----
 
 ## 📊 Supported Benchmarks & Models
 
@@ -253,7 +245,6 @@ We have also reproduced GUI grounding results for frontier models on ScreenSpot-
 > - **[0, 1]** — Output is a ratio in [0, 1] relative to the original image dimensions
 > - **[0, 999]** — Similar to [0, 1000] but with a 999 divisor
 
----
 
 ## 💡 Reproduction Tips
 
@@ -317,7 +308,6 @@ Additionally, since OS-Atlas, most subsequent works evaluate on the **7,708-samp
 
 </details>
 
----
 
 ## 🚀 Quick Start
 
@@ -373,7 +363,6 @@ bash scripts/metric/run_metric_androidcontrol.sh
 
 Reports accuracy broken down by platform, UI type, etc.
 
----
 
 ## ⚙️ Script Parameters
 
@@ -414,7 +403,6 @@ In addition to the parameters above:
 | `MODEL_TYPE` | Model type (selects the correct parser) |
 | `INCLUDE_REFUSAL` | `""` to exclude refusal samples, `"--include_refusal"` to include (OSWorld-G only) |
 
----
 
 ## 🧩 Adding a New Model
 
@@ -436,7 +424,6 @@ In addition to the parameters above:
 
 6. Create launch scripts under `scripts/infer/transformers/` and `scripts/infer/api/`.
 
----
 
 ## 📋 Data Format
 
@@ -451,7 +438,6 @@ Each input sample must contain the following fields:
 | `image_size` | ✅ | `[width, height]` in pixels |
 | `system_prompt` | ❌ | List of system prompt strings (used when `SYSTEM_PROMPT="call_user"`) |
 
----
 
 ## 📈 Reproduction Results
 
@@ -503,7 +489,6 @@ AndroidControl evaluates **offline navigation** with multi-action prediction (cl
 
 > **Note:** Official AndroidControl baselines for these models are not yet publicly available. We will update the comparison once official numbers are released.
 
----
 
 ## 🗺️ Roadmap
 
@@ -516,7 +501,6 @@ AndroidControl evaluates **offline navigation** with multi-action prediction (cl
 - [ ] Add more GUI-specific models
 - [ ] GUI offline navigation evaluation (e.g. GUI-Odyssey)
 
----
 
 ## 📄 License
 

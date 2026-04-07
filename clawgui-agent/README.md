@@ -17,7 +17,6 @@
 
 [English](README.md) | [中文](README_CN.md)
 
----
 
 **ClawGUI-Agent** is the deployment module of [ClawGUI](../README.md). Built on [OpenClaw](https://github.com/openclaw/openclaw) and powered by [nanobot](https://github.com/HKUDS/nanobot), it provides two core capabilities: **GUI phone control** and **one-command evaluation**. For phone control, it drives a Vision-Language Model through a closed-loop "screenshot → reasoning → action" cycle to autonomously complete tasks on Android, HarmonyOS, and iOS devices — accessible from Feishu, QQ, Telegram, and 12+ other chat platforms. For evaluation, a single natural-language command triggers the full [ClawGUI-Eval](../clawgui-eval) pipeline: environment check, multi-GPU inference, judging, and metric reporting.
 
@@ -382,7 +381,6 @@ nanobot will automatically:
 
 Supported Benchmarks: ScreenSpot-Pro, ScreenSpot-V2, UIVision, MMBench-GUI, OSWorld-G, AndroidControl
 
----
 
 ## 📱 GUI Phone Control
 
@@ -434,7 +432,6 @@ The framework supports multiple Vision-Language Models via an adapter pattern:
 
 All models are connected via **OpenAI-compatible API** and can be deployed locally with vLLM / SGLang, or connected to cloud services such as Zhipu BigModel, Alibaba Cloud Bailian, or OpenRouter.
 
----
 
 ## 📁 Directory Structure
 
