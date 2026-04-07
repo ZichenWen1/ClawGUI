@@ -201,7 +201,7 @@ brew install android-platform-tools
 sudo apt install android-tools-adb   # Ubuntu/Debian
 ```
 
-**Windows：** 请参考 [官方指南](https://developer.android.com/tools/releases/platform-tools) 下载并配置环境变量。
+**Windows：** 请参考此 [博客教程](https://blog.csdn.net/x2584179909/article/details/108319973) 下载并配置环境变量。
 
 **方案 B：手动下载安装**
 

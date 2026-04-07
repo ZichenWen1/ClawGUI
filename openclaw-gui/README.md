@@ -198,7 +198,7 @@ brew install android-platform-tools
 sudo apt install android-tools-adb   # Ubuntu/Debian
 ```
 
-**Windows:** See the [official guide](https://developer.android.com/tools/releases/platform-tools) to download and configure PATH.
+**Windows:** See this [blog tutorial](https://blog.csdn.net/x2584179909/article/details/108319973) to download and configure PATH.
 
 **Option B: Manual download**
 
