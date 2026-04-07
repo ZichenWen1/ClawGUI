@@ -148,6 +148,10 @@ OpenGUI-Eval is a standardized GUI grounding evaluation framework with a three-s
 
 ## 🗺️ Roadmap
 
+- [x] **OpenClaw-GUI** — GUI agent framework for phone control and evaluation via natural language
+- [x] **OpenGUI-RL** — Scalable mobile online RL training infrastructure with GiGPO + PRM
+- [x] **OpenGUI-Eval** — Standardized GUI grounding evaluation suite with 6 benchmarks and 95%+ reproduction rate
+- [x] **OpenGUI-2B** — 2B GUI agent trained with GiGPO, achieving 17.1 MobileWorld SR (vs. 11.1 baseline)
 - [ ] **On-device GUI-Claw** — Deploy OpenClaw-GUI directly on real phones to avoid cloud-based privacy leakage
 - [ ] **Desktop Online RL** — Extend OpenGUI-RL to desktop environments for online reinforcement learning
 - [ ] **Web Online RL** — Extend OpenGUI-RL to web environments for online reinforcement learning
