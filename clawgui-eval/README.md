@@ -53,10 +53,6 @@
 <img src="assets/clawgui-eval-arch.png" width="90%" alt="ClawGUI-Eval Architecture">
 </div>
 
-<div align="center">
-<img src="assets/reproduction_by_benchmark.png" width="90%" alt="Reproduction Results by Benchmark">
-</div>
-
 
 ## 🔧 Installation
 

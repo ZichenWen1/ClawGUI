@@ -2,7 +2,6 @@
 
 Thank you for your interest in contributing! ClawGUI is a research framework for GUI agents — any contribution that makes it more capable, reproducible, or easier to use is welcome.
 
----
 
 ## Table of Contents
 
@@ -17,7 +16,6 @@ Thank you for your interest in contributing! ClawGUI is a research framework for
 - [Submitting a Pull Request](#submitting-a-pull-request)
 - [Reporting Issues](#reporting-issues)
 
----
 
 ## Ways to Contribute
 
@@ -30,7 +28,6 @@ Thank you for your interest in contributing! ClawGUI is a research framework for
 | **Documentation** | Fix typos, improve explanations, add examples |
 | **Tooling** | Improve scripts, add diagnostics, CI improvements |
 
----
 
 ## Getting Started
 
@@ -68,7 +65,6 @@ Thank you for your interest in contributing! ClawGUI is a research framework for
    git checkout -b fix/issue-number-short-description
    ```
 
----
 
 ## Development Workflow
 
@@ -87,7 +83,6 @@ Thank you for your interest in contributing! ClawGUI is a research framework for
 
 5. Push and open a Pull Request against the `master` branch.
 
----
 
 ## Module-Specific Guidelines
 
@@ -143,7 +138,6 @@ Create `scripts/infer/transformers/<name>_run_transformers.sh` and (optionally) 
 
 Run the full Infer → Judge → Metric pipeline on at least ScreenSpot-Pro and include your results in the PR description. If official numbers are available, compute the reproduction rate.
 
----
 
 ### ClawGUI-RL — Adding a New Environment
 
@@ -167,7 +161,6 @@ Where `observation` is a dict containing at minimum `{"screenshot": <PIL.Image>}
 
 Register your environment in the environment factory and add a sample training script under `examples/`.
 
----
 
 ### ClawGUI-Agent — Adding a New Device or Model Adapter
 
@@ -180,7 +173,6 @@ Register your environment in the environment factory and add a sample training s
 
 Add the new `promptTemplateStyle` value to the configuration documentation in `README.md` and `README_CN.md`.
 
----
 
 ## Code Style
 
@@ -189,7 +181,6 @@ Add the new `promptTemplateStyle` value to the configuration documentation in `R
 - **No unnecessary dependencies**: Avoid adding new top-level dependencies unless necessary. If you do, update `requirements.txt` or `pyproject.toml` in the relevant module.
 - **No breaking changes to existing interfaces** without discussion in an issue first.
 
----
 
 ## Submitting a Pull Request
 
@@ -198,7 +189,6 @@ Add the new `promptTemplateStyle` value to the configuration documentation in `R
 3. If your PR adds a new model or environment, include concrete test results in the description.
 4. A maintainer will review your PR. Please be responsive to feedback — PRs with no activity for 30 days may be closed.
 
----
 
 ## Reporting Issues
 
@@ -210,7 +200,6 @@ Use the GitHub Issue templates:
 
 Before opening a new issue, please search existing issues to avoid duplicates.
 
----
 
 ## License
 
