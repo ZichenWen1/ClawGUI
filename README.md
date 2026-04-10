@@ -21,11 +21,11 @@
 <table>
 <tr>
 <td align="center">
-<video src="https://zju-real.github.io/ClawGUI-Page/assets/clawgui-agent.mp4" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/47077dd7-3571-46e1-9a4d-bb4a2bb79505" controls width="420"></video>
 <br><b>ClawGUI-Agent controls a real phone via natural language</b>
 </td>
 <td align="center">
-<video src="https://zju-real.github.io/ClawGUI-Page/assets/clawgui-rl.mp4" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/a05298ea-ddaa-4eab-9deb-7700d1554a05" controls width="420"></video>
 <br><b>ClawGUI-RL trains a GUI agent with online reinforcement learning</b>
 </td>
 </tr>
