@@ -26,7 +26,7 @@
 </td>
 <td align="center">
 <video src="https://github.com/user-attachments/assets/a05298ea-ddaa-4eab-9deb-7700d1554a05" controls width="420"></video>
-<br><b>ClawGUI-RL trains a GUI agent with online reinforcement learning</b>
+<br><b>ClawGUI-RL trains a GUI agent with online<br>reinforcement learning</b>
 </td>
 </tr>
 </table>
