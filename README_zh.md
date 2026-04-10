@@ -21,11 +21,11 @@
 <table>
 <tr>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/47077dd7-3571-46e1-9a4d-bb4a2bb79505" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/38471771-c614-4520-a4a1-0b985546e023" controls width="420"></video>
 <br><b>ClawGUI-Agent 通过自然语言操控真实手机</b>
 </td>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/a05298ea-ddaa-4eab-9deb-7700d1554a05" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/fada16d4-9d70-469c-802e-1f1643907f75" controls width="420"></video>
 <br><b>ClawGUI-RL 在线强化学习训练 GUI 智能体</b>
 </td>
 </tr>
