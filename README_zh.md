@@ -20,22 +20,12 @@
 <table>
 <tr>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/cca75b33-4786-4f73-8c3f-ac3277831111" controls width="320"></video>
-<br><b>ClawGUI-Agent 搜集信息总结歌手纷争</b>
+<video src="https://github.com/ZJU-REAL/ClawGUI-Page/releases/download/clawgui-video/clawgui-agent.mp4" controls width="320"></video>
+<br><b>ClawGUI-Agent 通过自然语言操控真实手机</b>
 </td>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/75a6e68d-8880-4e77-9135-a409f1de787c" controls width="320"></video>
-<br><b>ClawGUI-Agent 帮助用户解决网络问题</b>
-</td>
-</tr>
-<tr>
-<td align="center">
-<video src="https://github.com/user-attachments/assets/bc486af2-23de-48d0-af30-aa7dbbd078a6" controls width="320"></video>
-<br><b>ClawGUI-Agent 协助用户查火车票信息并返回</b>
-</td>
-<td align="center">
-<video src="https://github.com/user-attachments/assets/c7155c5d-cdda-4784-94ec-e791a992979e" controls width="320"></video>
-<br><b>ClawGUI-Agent 帮助用户解决评测的燃眉之急</b>
+<video src="https://github.com/ZJU-REAL/ClawGUI-Page/releases/download/clawgui-video/clawgui-rl.mp4" controls width="320"></video>
+<br><b>ClawGUI-RL 在线强化学习训练 GUI 智能体</b>
 </td>
 </tr>
 </table>
