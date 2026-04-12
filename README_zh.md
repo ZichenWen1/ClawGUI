@@ -25,7 +25,7 @@
 <br><b>ClawGUI-Agent 通过自然语言操控真实手机</b>
 </td>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/c057eb2e-71c2-433b-b622-4fee4135448d" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/a72f9229-15e4-439e-aeb1-82a05b843fbe" controls width="420"></video>
 <br><b>ClawGUI-RL 在线强化学习训练 GUI 智能体</b>
 </td>
 </tr>

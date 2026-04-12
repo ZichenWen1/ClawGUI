@@ -25,7 +25,7 @@
 <br><b>ClawGUI-Agent controls a real phone<br>via natural language</b>
 </td>
 <td align="center">
-<video src="https://github.com/user-attachments/assets/c057eb2e-71c2-433b-b622-4fee4135448d" controls width="420"></video>
+<video src="https://github.com/user-attachments/assets/a72f9229-15e4-439e-aeb1-82a05b843fbe" controls width="420"></video>
 <br><b>ClawGUI-RL trains a GUI agent with online<br>reinforcement learning</b>
 </td>
 </tr>
