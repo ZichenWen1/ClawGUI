@@ -64,7 +64,7 @@ ClawGUI-RL is built on [verl](https://github.com/volcengine/verl) with a **Ray s
 - **Multi-turn rollout loop** — Each episode is a multi-step conversation: the agent receives a screenshot, reasons, outputs an action (tap/swipe/type/terminate), and receives the next screenshot until termination or `max_steps`.
 
 
-## 🧬 GiGPO Algorithm
+## 🧬 [GiGPO Algorithm](https://github.com/langfengq/verl-agent)
 
 Standard GRPO assigns a single advantage score to an entire episode, which gives no credit signal to intermediate steps. ClawGUI-RL replaces GRPO with **GiGPO** (Group-in-Group Policy Optimization), which estimates per-step advantages without a learned critic.
 
