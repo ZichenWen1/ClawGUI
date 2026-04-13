@@ -6,7 +6,7 @@ export NCCL_P2P_DISABLE=1
 cd "$(dirname "$0")"
 
 # ============ User-configurable parameters ============
-model_path=/home/tangfei/models/GUI-Owl-1.5-2B-Instruct
+model_path=/models/GUI-Owl-1.5-2B-Instruct
 model_type=gui_owl
 data_dir=~/data/mw_online_rl/visual
 n_gpus=1
@@ -21,7 +21,7 @@ adv_estimator=grpo
 num_cpus_per_env_worker=0.10
 experiment_name=grpo_mobileworld
 shuffle=False
-checkpoints_path=/home/tangfei/online_rl_exps/test
+checkpoints_path=/online_rl_exps/test
 data_source_dir=
 server_file=../env_server/mobileworld_server.txt
 

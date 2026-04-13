@@ -6,7 +6,7 @@ export NCCL_P2P_DISABLE=1
 cd "$(dirname "$0")"
 
 # ============ User-configurable parameters ============
-model_path=/home/tangfei/models/GUI-Owl-1.5-2B-Instruct
+model_path=/models/GUI-Owl-1.5-2B-Instruct
 model_type=gui_owl
 data_dir=~/data/mw_online_rl/visual
 n_gpus=1
@@ -22,8 +22,8 @@ mode="mean_norm" # "mean_norm" or "mean_std_norm"
 num_cpus_per_env_worker=0.10
 experiment_name=gigpo_mobileworld
 shuffle=False
-checkpoints_path=/home/tangfei/online_rl_exps/test
-data_source_dir=/home/tangfei/online_rl/verl-agent/data/geometry3k
+checkpoints_path=/online_rl_exps/test
+data_source_dir=/online_rl/verl-agent/data/geometry3k
 server_file=../env_server/mobileworld_server.txt
 
 # ============ Step reward judge parameters ============
