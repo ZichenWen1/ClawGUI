@@ -38,7 +38,7 @@
 
 ## News
 
-+ 📄 **[2026/4/14]** Our paper is available on arXiv: [ClawGUI: Build, Evaluate, and Deploy GUI Agents](https://arxiv.org/abs/2604.11784).
++ 📄 **[2026/4/14]** Our paper is available on arXiv: [ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents](https://arxiv.org/abs/2604.11784).
 + 🔥 **[2026/4/13]** ClawGUI is released — train with ClawGUI-RL (GiGPO), evaluate with ClawGUI-Eval, deploy with ClawGUI-Agent. ClawGUI-2B, a 2B agent trained end-to-end with this pipeline, hits **17.1** MobileWorld SR vs. the **11.1** baseline. See [Quick Start](#-quick-start).
 
 ## Table of Contents
